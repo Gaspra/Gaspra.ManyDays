@@ -1,15 +1,17 @@
 var googleKey = "AIzaSyBb_OlGJ8FlcWBvL8eTY_niLspLZK6jnfw";
-var loadGoogleApiPromise;
+var loadGoogleApiPromise = [];
 var manydaysMap;
 
 function InitialiseMap() 
 {
-    loadGoogleApiPromise = new Promise(
+    loadGoogleApiPromise.push(new Promise(
         resolve => 
         {
             LoadGoogleScript();
         }
-    );
+    ));
+
+    Promise.all(loadGoogleApiPromise)
 
     loadGoogleApiPromise.then(function() 
     {
