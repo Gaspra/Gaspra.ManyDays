@@ -10,10 +10,14 @@ function InitialiseMap()
         {
             LoadGoogleScript();
         }
+    ).done(function()
+        {
+            $("#scripts").append(googleScript);
+        }
     ));
 
     loadGoogleApiPromise.done(function() {
-        $("#scripts").append(googleScript);
+       
     });
 
     Promise.all(loadGoogleApiPromise).then(function() 
