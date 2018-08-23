@@ -8,12 +8,7 @@ function InitialiseMap()
     loadGoogleApiPromise.push(new Promise(
         resolve => 
         {
-            LoadGoogleScript();
-
-            function resolveGoogleScript() {
-                $("#scripts").append(googleScript);
-                resolve();   
-            }
+            LoadGoogleScript();            
         }
     ));
 
@@ -31,5 +26,10 @@ function LoadGoogleScript()
 {
     googleScript = document.createElement("script");
     googleScript.type = "text/javascript";
-    googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey+"&callback=resolveGoogleScript";
+    googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey+"&callback=ResolveGoogleScript";
+}
+
+function ResolveGoogleScript() {
+    $("#scripts").append(googleScript);
+    resolve();   
 }
