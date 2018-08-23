@@ -11,9 +11,7 @@ function InitialiseMap()
         }
     ));
 
-    Promise.all(loadGoogleApiPromise)
-
-    loadGoogleApiPromise.then(function() 
+    Promise.all(loadGoogleApiPromise).then(function() 
     {
         manydaysMap = new googleKey.maps.Map(document.getElementById("map"), {
             center: { lat: 1, lng: 1 },
