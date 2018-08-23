@@ -9,6 +9,10 @@ function InitialiseMap()
         resolve => 
         {
             LoadGoogleScript();
+
+            function resolveGoogleScript() {
+                resolve();   
+            }
         }
     ).done(function()
         {
@@ -34,5 +38,5 @@ function LoadGoogleScript()
 {
     googleScript = document.createElement("script");
     googleScript.type = "text/javascript";
-    googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey;
+    googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey+"&callback=resolveGoogleScript";
 }
