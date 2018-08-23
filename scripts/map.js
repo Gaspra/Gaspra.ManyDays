@@ -13,12 +13,11 @@ function LoadGoogleScript()
     googleScript = document.createElement("script");
     googleScript.type = "text/javascript";
     googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey+"&callback=LoadedGoogleApi";
+    $("#scripts").append(googleScript);
 }
 
 function LoadedGoogleApi()
 {
-    $("#scripts").append(googleScript);
-
     manydaysMap = new googleKey.maps.Map(document.getElementById("map"), {
         center: { lat: 1, lng: 1 },
         zoom: 6,
