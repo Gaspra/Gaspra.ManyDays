@@ -18,7 +18,7 @@ function LoadGoogleScript()
 
 function LoadedGoogleApi()
 {
-    manydaysMap = new googleScript.maps.Map(document.getElementById("map"), {
+    manydaysMap = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 1, lng: 1 },
         zoom: 6,
         mapTypeId: google.maps.MapTypeId.HYBRID
