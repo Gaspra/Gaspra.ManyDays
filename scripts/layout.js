@@ -6,11 +6,6 @@ var resizeContainer;
 var mapContainer;
 var galleryContainer;
 
-$(document).ready(function() 
-{
-    InitialiseContainers();
-});
-
 function InitialiseContainers() 
 {
     var body = $("body");
@@ -25,8 +20,8 @@ function InitialiseContainers()
     manydaysContainer.css("position", "absolute");
 
     aboutContainer = $("#about");
-    aboutContainer.height("100%");
-    aboutContainer.width("100%");
+    aboutContainer.css("height", "100%");
+    aboutContainer.css("width", "100%");
     aboutContainer.css("background-color", "coral");
     aboutContainer.css("position", "absolute");
 
@@ -40,14 +35,19 @@ function InitialiseContainers()
     resizeContainer.css("display", "none");
 
     mapContainer = $("#map");
-    mapContainer.css("display", "none");
+    mapContainer.css("width", "100%");
+    mapContainer.css("height", "50%");
+    mapContainer.css("position", "relative");
 
     galleryContainer = $("#gallery");
-    galleryContainer.css("display", "none");
+    galleryContainer.css("width", "100%");
+    galleryContainer.css("height", "50%");
+    galleryContainer.css("position", "relative");
+    galleryContainer.css("background-color", "aqua")
 }
 
-$(window).resize(function()
+function ResizeContainers()
 {
 
-});
+}
 
