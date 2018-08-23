@@ -1,4 +1,5 @@
 var googleKey = "AIzaSyBb_OlGJ8FlcWBvL8eTY_niLspLZK6jnfw";
+var googleScript;
 var loadGoogleApiPromise = [];
 var manydaysMap;
 
@@ -10,6 +11,10 @@ function InitialiseMap()
             LoadGoogleScript();
         }
     ));
+
+    loadGoogleApiPromise.done(function() {
+        $("#scripts").append(googleScript);
+    });
 
     Promise.all(loadGoogleApiPromise).then(function() 
     {
@@ -23,8 +28,7 @@ function InitialiseMap()
 
 function LoadGoogleScript()
 {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey;
-    $("#scripts").append(script);
+    googleScript = document.createElement("script");
+    googleScript.type = "text/javascript";
+    googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey;
 }
