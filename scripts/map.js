@@ -11,18 +11,11 @@ function InitialiseMap()
             LoadGoogleScript();
 
             function resolveGoogleScript() {
+                $("#scripts").append(googleScript);
                 resolve();   
             }
         }
-    ).done(function()
-        {
-            $("#scripts").append(googleScript);
-        }
     ));
-
-    loadGoogleApiPromise.done(function() {
-       
-    });
 
     Promise.all(loadGoogleApiPromise).then(function() 
     {
