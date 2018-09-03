@@ -18,7 +18,7 @@ function LoadImageCollection()
 {
     var promise = $.get('../gallery/manydays.json');
     promise.done(function (data) {
-        ImageCollection.Json = JSON.parse(data);
+        ImageCollection.Json = data;
     });
 
     ImageCollection.Images = [];
