@@ -5,8 +5,6 @@ $(document).ready(function()
     InitialiseMap();
 
     LoadImageCollection();
-    
-    GetAlbumTest();
 });
 
 $(window).resize(function() 
@@ -18,10 +16,10 @@ var ImageCollection = {};
 
 function LoadImageCollection() 
 {
-    var promise = $.get('../gallery/manydays.json');
+    var promise = $.get('../manydays.json');
     promise.done(function (data) {
         ImageCollection.Json = data;
+        
+        InitialiseGallery();
     });
-
-    ImageCollection.Images = [];
 }
