@@ -9,7 +9,7 @@
 
 function InitialiseGallery()
 {
-    ImageCollection.ImageCollection.Json["Images"].forEach(function(image) {
+    ImageCollection.Json["Images"].forEach(function(image) {
         InitialiseImage(image)
     });
 }
