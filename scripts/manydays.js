@@ -5,6 +5,8 @@ $(document).ready(function()
     InitialiseMap();
 
     LoadImageCollection();
+    
+    GetAlbumTest();
 });
 
 $(window).resize(function() 
