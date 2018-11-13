@@ -9,9 +9,7 @@
 
 function InitialiseGallery()
 {
-    ImageCollection.ImageObjects = (JSON.parse(ImageCollection.Json))["Images"];
-
-    ImageCollection.ImageObjects.forEach(function(image) {
+    ImageCollection.ImageCollection.Json["Images"].forEach(function(image) {
         InitialiseImage(image)
     });
 }
