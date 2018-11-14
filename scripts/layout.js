@@ -51,8 +51,7 @@ function InitialiseContainers()
 
 function ResizeThumbnails()
 {
-    var widthPerThumbnail = (galleryContainer.width() / thumbnailCountPerRow);
-    var thumbnailSize = widthPerThumbnail - (widthPerThumbnail%1); //strip decimal
+    var thumbnailSize = (galleryContainer.width() / thumbnailCountPerRow);
     $(".imgThumbnail").css("width", thumbnailSize + "px");
     $(".imgThumbnail").css("height", thumbnailSize + "px");
 }
