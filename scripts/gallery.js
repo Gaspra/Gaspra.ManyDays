@@ -29,7 +29,7 @@ function InitialiseImage(image)
         .on('load', function ()
         {
             $('#gallery').append('<div class="imgThumbnail" id="img_'+image.Id+'"></div>');
-            $('#img_'+image.Id).css('background-image', 'url('+thumbnailBucket + image.Filename + imagePrefi+')');
+            $('#img_'+image.Id).css('background-image', 'url('+ thumbnailBucket + image.Filename + imagePrefix +')');
 
             resolve();
         })
