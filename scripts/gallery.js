@@ -16,7 +16,7 @@ function InitialiseGallery()
     }
 
     Promise.all(ManyDaysGallery.Promises).then(function() {
-        Console.log("all promises done, yey!");
+        console.log("all promises done, yey!");
     });
 }
 
