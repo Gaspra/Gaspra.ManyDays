@@ -5,8 +5,9 @@ var previewContainer;
 var resizeContainer;
 var mapContainer;
 var galleryContainer;
+var imageThumbnail;
 
-function InitialiseContainers() 
+function InitialiseContainers()
 {
     var body = $("body");
     body.css("height", "100vh");
@@ -44,10 +45,14 @@ function InitialiseContainers()
     galleryContainer.css("height", "50%");
     galleryContainer.css("position", "relative");
     galleryContainer.css("background-color", "aqua")
+
+    imageThumbnail = $("#imgThumbnail");
+    imageThumbnail.css("width", "100px");
+    imageThumbnail.css("height", "100px");
+    imageThumbnail.css("position", "relative");
 }
 
 function ResizeContainers()
 {
 
 }
-
