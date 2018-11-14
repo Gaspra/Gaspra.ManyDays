@@ -17,6 +17,7 @@ function InitialiseGallery()
 
     Promise.all(ManyDaysGallery.Promises).then(function() {
         console.log("all promises done, yey!");
+        ResizeThumbnails();
     });
 }
 
