@@ -6,6 +6,7 @@ var resizeContainer;
 var mapContainer;
 var galleryContainer;
 var imageThumbnail;
+var thumbnailCountPerRow = 6;
 
 function InitialiseContainers()
 {
@@ -46,19 +47,17 @@ function InitialiseContainers()
     galleryContainer.css("position", "relative");
     galleryContainer.css("background-color", "aqua");
     galleryContainer.css("overflow-y", "scroll");
-    
-    var thumbnailSize = galleryContainer.innerWidth()/6 - galleryContainer.innerWidth()/6%1;
-    imageThumbnail = $(".imgThumbnail");
-    imageThumbnail.css("width", thumbnailSize + "px");
-    imageThumbnail.css("width", thumbnailSize + "px");
+}
+
+function ResizeThumbnails()
+{
+    var widthPerThumbnail = (galleryContainer.outerWidth(true) / thumbnailCountPerRow);
+    var thumbnailSize = widthPerThumbnail - (widthPerThumbnail%1); //strip decimal
+    $(".imgThumbnail").css("width", thumbnailSize + "px");
+    $(".imgThumbnail").css("height", thumbnailSize + "px");
 }
 
 function ResizeContainers()
 {
-    var thumbnailSize = galleryContainer.innerWidth()/6 - galleryContainer.innerWidth()/6%1;
-    imageThumbnail = $(".imgThumbnail");
-    imageThumbnail.css("width", thumbnailSize + "px");
-    imageThumbnail.css("width", thumbnailSize + "px");
+    ResizeThumbnails();
 }
-
-
