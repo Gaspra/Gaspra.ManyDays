@@ -46,12 +46,19 @@ function InitialiseContainers()
     galleryContainer.css("position", "relative");
     galleryContainer.css("background-color", "aqua");
     galleryContainer.css("overflow-y", "scroll");
-
+    
+    var thumbnailSize = galleryContainer.innerWidth()/6 - galleryContainer.innerWidth()/6%1;
     imageThumbnail = $(".imgThumbnail");
-    imageThumbnail.css("width", (galleryContainer.innerWidth()/6 - galleryContainer.innerWidth()/6%1)
+    imageThumbnail.css("width", thumbnailSize + "px");
+    imageThumbnail.css("width", thumbnailSize + "px");
 }
 
 function ResizeContainers()
 {
-
+    var thumbnailSize = galleryContainer.innerWidth()/6 - galleryContainer.innerWidth()/6%1;
+    imageThumbnail = $(".imgThumbnail");
+    imageThumbnail.css("width", thumbnailSize + "px");
+    imageThumbnail.css("width", thumbnailSize + "px");
 }
+
+
