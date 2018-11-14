@@ -1,4 +1,4 @@
-$(document).ready(function() 
+$(document).ready(function()
 {
     InitialiseContainers();
 
@@ -7,19 +7,20 @@ $(document).ready(function()
     LoadImageCollection();
 });
 
-$(window).resize(function() 
+$(window).resize(function()
 {
     ResizeContainers();
 });
 
+var ManyDaysGallery = {};
 var ImageCollection = {};
 
-function LoadImageCollection() 
+function LoadImageCollection()
 {
     var promise = $.get('../ManyDays.json');
     promise.done(function (data) {
         ImageCollection.Json = data;
-        
+
         InitialiseGallery();
     });
 }
