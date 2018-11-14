@@ -44,9 +44,10 @@ function InitialiseContainers()
     galleryContainer.css("width", "100%");
     galleryContainer.css("height", "50%");
     galleryContainer.css("position", "relative");
-    galleryContainer.css("background-color", "aqua")
-
-    imageThumbnail = $("#imgThumbnail");
+    galleryContainer.css("background-color", "aqua");
+    galleryContainer.css("overflow-y", "scroll");
+    
+    imageThumbnail = $(".imgThumbnail");
     imageThumbnail.css("width", "100px");
     imageThumbnail.css("height", "100px");
     imageThumbnail.css("position", "relative");
