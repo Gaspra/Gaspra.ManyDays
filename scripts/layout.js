@@ -45,7 +45,6 @@ function InitialiseContainers()
     galleryContainer.css("width", "100%");
     galleryContainer.css("height", "50%");
     galleryContainer.css("position", "relative");
-    galleryContainer.css("background-color", "aqua");
     galleryContainer.css("overflow-y", "scroll");
 }
 
