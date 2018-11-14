@@ -1,13 +1,7 @@
-# ManyDays
+# ManyDays :godmode:
 
-# To do
+using google bucket for images
+  https://storage.googleapis.com/manydays-gallery/
 
-:goberserk: design new json format
-
-:godmode: convert manydays json to an updated format (have to update image names with it) 
-
-:hurtrealbad: upload images to github
-
-:rage1: create script to load gallery
-
-:rage2: create script to load map
+using github pages for site
+  www.gaspra.co.uk  
