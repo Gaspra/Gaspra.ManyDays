@@ -48,7 +48,7 @@ function InitialiseContainers()
     galleryContainer.css("overflow-y", "scroll");
 
     imageThumbnail = $(".imgThumbnail");
-    imageThumbnail.css("width", ($(galleryContainer).innerWidth() / 6))
+    imageThumbnail.css("width", (galleryContainer.innerWidth()/6 - galleryContainer.innerWidth()/6%1)
 }
 
 function ResizeContainers()
