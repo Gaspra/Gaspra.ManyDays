@@ -6,9 +6,10 @@ var imagePrefix = ".png";
 
 function InitialiseGallery()
 {
-    CreateImageDivs();
-
     var numberOfImages = ImageCollection.Json["Images"].length;
+
+    CreateImageDivs(numberOfImages);
+
     ManyDaysGallery.Promises = [];
     for(var i = numberOfImages - 1; i--; i > -1)
     {
@@ -20,7 +21,7 @@ function InitialiseGallery()
     });
 }
 
-function CreateImageDivs()
+function CreateImageDivs(numberOfImages)
 {
     for(var i = numberOfImages - 1; i--; i > -1)
     {
