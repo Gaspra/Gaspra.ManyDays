@@ -26,7 +26,7 @@ function CreateImageDivs(numberOfImages)
     for(var i = numberOfImages - 1; i--; i > -1)
     {
         var imageId = ImageCollection.Json["Images"][i].Id;
-        $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+image.Id+'"></div>');
+        $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+imageId+'"></div>');
         ResizeThumbnails();
     }
 }
