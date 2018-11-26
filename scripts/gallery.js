@@ -12,6 +12,11 @@ function InitialiseGallery()
 
     for(var i = numberOfImages - 1; i--; i > -1)
     {
+        if(i == numberOfImages -1)
+        {
+            SetMapLocation(ImageCollection.Json["Images"][i]);
+        }
+
         $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].id+'"></div>');
         ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
     }
@@ -31,6 +36,8 @@ function InitialiseImage(image)
         {
             $('#img_'+image.Id).css('background-image', 'url('+ thumbnailBucket + image.Filename + imagePrefix +')');
             $('#img_'+image.Id).removeClass('imgHidden');
+            AddMapMarker(image);
+            CreateClickEvent(image);
             resolve();
         })
         .on('error', function (err)
@@ -38,5 +45,13 @@ function InitialiseImage(image)
             console.log('Failed to get image, error: ' + err);
             resolve();
         });
+    });
+}
+
+function CreateClickEvent(image)
+{
+    $('#img_'+image.Id).on('click', function()
+    {
+        window.open(rawBucket + image.Filename + imagePrefix, '_blank');
     });
 }

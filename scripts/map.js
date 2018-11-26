@@ -40,7 +40,7 @@ function AddMapMarker(image)
         title: image.Location.Name
         //cursor: pointer
         //url: link to image
-    }
+    });
 
     mapMarker.setMap(manyDaysMap);
 }
