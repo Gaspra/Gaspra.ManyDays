@@ -42,7 +42,7 @@ function InitialiseContainers()
     navContainer.css("position", "relative");
 
     resizeContainer = $("#resize");
-    resizeContainer.css("height", "20px;")
+    resizeContainer.css("height", "20px");
     resizeContainer.css("width", "100%");
     resizeContainer.css("background-color", "#ffffff");
     resizeContainer.css("position", "relative");
