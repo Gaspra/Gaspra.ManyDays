@@ -12,12 +12,12 @@ function InitialiseGallery()
 
     for(var i = numberOfImages - 1; i--; i > -1)
     {
+        $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].id+'"></div>');
         ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
     }
 
     Promise.all(ManyDaysGallery.Promises).then(function() {
-        console.log("all promises done, yey!");
-        ResizeThumbnails();
+        console.log("That's all of 'em!");
     });
 }
 
@@ -29,9 +29,8 @@ function InitialiseImage(image)
         $('<img/>').attr('src', thumbnailBucket + image.Filename + imagePrefix)
         .on('load', function ()
         {
-            $('#gallery').append('<div class="imgThumbnail" id="img_'+image.Id+'"></div>');
             $('#img_'+image.Id).css('background-image', 'url('+ thumbnailBucket + image.Filename + imagePrefix +')');
-
+            $('#img_'+image.Id).removeClass('imgHidden');
             resolve();
         })
         .on('error', function (err)

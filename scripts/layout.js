@@ -42,14 +42,14 @@ function InitialiseContainers()
     navContainer.css("position", "relative");
 
     resizeContainer = $("#resize");
-    resizeContainer.css("height", "30px;")
+    resizeContainer.css("height", "20px;")
     resizeContainer.css("width", "100%");
     resizeContainer.css("background-color", "#ffffff");
     resizeContainer.css("position", "relative");
 
     mapContainer = $("#map");
     mapContainer.css("width", "100%");
-    mapContainer.css("height", "calc(40% - 80px)");
+    mapContainer.css("height", "calc(40% - 70px)");
     mapContainer.css("position", "relative");
 
     galleryContainer = $("#gallery");

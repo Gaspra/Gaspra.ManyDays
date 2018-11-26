@@ -3,7 +3,7 @@ var googleScript;
 var loadGoogleApiPromise = [];
 var manydaysMap;
 
-function InitialiseMap() 
+function InitialiseMap()
 {
     LoadGoogleScript();
 }
@@ -23,4 +23,24 @@ function LoadedGoogleApi()
         zoom: 6,
         mapTypeId: google.maps.MapTypeId.HYBRID
     });
+}
+
+function SetMapLocation(image)
+{
+    var latLng = { lat: image.Location.Lat, lng: image.Location.Lng };
+    manydaysMap.panTo(latLng);
+}
+
+function AddMapMarker(image)
+{
+    var latLng = { lat: image.Location.Lat, lng: image.Location.Lng };
+    var mapMarker = new google.maps.Marker({
+        position: latLng,
+        draggable: false,
+        title: image.Location.Name
+        //cursor: pointer
+        //url: link to image
+    }
+
+    mapMarker.setMap(manyDaysMap);
 }
