@@ -49,12 +49,12 @@ function InitialiseContainers()
 
     mapContainer = $("#map");
     mapContainer.css("width", "100%");
-    mapContainer.css("height", "calc(30% - 80px)");
+    mapContainer.css("height", "calc(40% - 80px)");
     mapContainer.css("position", "relative");
 
     galleryContainer = $("#gallery");
     galleryContainer.css("width", "100%");
-    galleryContainer.css("height", "70%");
+    galleryContainer.css("height", "60%");
     galleryContainer.css("position", "relative");
     galleryContainer.css("overflow-y", "scroll");
 }

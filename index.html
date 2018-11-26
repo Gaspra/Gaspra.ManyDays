@@ -9,9 +9,6 @@
     <!--preview layer-->
     <div id="preview"></div>
 
-    <!--resize layer-->
-    <div id="resize"></div>
-
     <!--main layer-->
     <div id="nav"></div>
     <div id="map"></div>
@@ -26,13 +23,20 @@
     .imgThumbnail {
         position: relative;
         float: left;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+    .imgThumbnail:hover {
+        opacity: 0.8;
     }
 </style>
 
 <div id="scripts">
     <script type="text/javascript" src="/scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript"  src="/scripts/gallery.js?ver=20"></script>
-    <script type="text/javascript"   src="/scripts/layout.js?ver=20"></script>
-    <script type="text/javascript"      src="/scripts/map.js?ver=20"></script>
-    <script type="text/javascript" src="/scripts/manydays.js?ver=20"></script>
+    <script type="text/javascript"  src="/scripts/gallery.js?ver=21"></script>
+    <script type="text/javascript"   src="/scripts/layout.js?ver=21"></script>
+    <script type="text/javascript"      src="/scripts/map.js?ver=21"></script>
+    <script type="text/javascript" src="/scripts/manydays.js?ver=21"></script>
 </div>
