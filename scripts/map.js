@@ -20,7 +20,7 @@ function LoadedGoogleApi()
 {
     manydaysMap = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 1, lng: 1 },
-        zoom: 6,
+        zoom: 5,
         mapTypeId: google.maps.MapTypeId.HYBRID
     });
 }

@@ -10,16 +10,15 @@ function InitialiseGallery()
 
     ManyDaysGallery.Promises = [];
 
+    SetMapLocation(ImageCollection.Json["Images"][numberOfImages - 1]);
+
     for(var i = numberOfImages - 1; i--; i > -1)
     {
-        if(i == numberOfImages -1)
-        {
-            SetMapLocation(ImageCollection.Json["Images"][i]);
-        }
-
         $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].Id+'"></div>');
-        ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
+        ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));        
     }
+
+    ResizeThumbnails();
 
     Promise.all(ManyDaysGallery.Promises).then(function() {
         console.log("That's all of 'em!");
