@@ -17,7 +17,7 @@ function InitialiseGallery()
             SetMapLocation(ImageCollection.Json["Images"][i]);
         }
 
-        $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].id+'"></div>');
+        $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].Id+'"></div>');
         ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
     }
 
