@@ -42,5 +42,5 @@ function AddMapMarker(image)
         //url: link to image
     });
 
-    mapMarker.setMap(manyDaysMap);
+    mapMarker.setMap(manydaysMap);
 }
