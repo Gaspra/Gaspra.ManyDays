@@ -20,7 +20,6 @@ function LoadImageCollection()
     var promise = $.get('../ManyDays.json');
     promise.done(function (data) {
         ImageCollection.Json = data;
-
         InitialiseGallery();
     });
 }
