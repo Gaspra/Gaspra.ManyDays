@@ -1,0 +1,14 @@
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\bin\Debug\netcoreapp2.1\ImageUploader.UI.deps.json
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\bin\Debug\netcoreapp2.1\ImageUploader.UI.runtimeconfig.json
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\bin\Debug\netcoreapp2.1\ImageUploader.UI.runtimeconfig.dev.json
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\bin\Debug\netcoreapp2.1\ImageUploader.UI.dll
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\obj\Debug\netcoreapp2.1\ImageUploader.UI.csprojAssemblyReference.cache
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\obj\Debug\netcoreapp2.1\ImageUploader.UI.csproj.CoreCompileInputs.cache
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\obj\Debug\netcoreapp2.1\ImageUploader.UI.AssemblyInfoInputs.cache
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\obj\Debug\netcoreapp2.1\ImageUploader.UI.AssemblyInfo.cs
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\bin\Debug\netcoreapp2.1\ImageUploader.UI.pdb
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\bin\Debug\netcoreapp2.1\ImageUploader.dll
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\bin\Debug\netcoreapp2.1\ImageUploader.pdb
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\obj\Debug\netcoreapp2.1\ImageUploader.UI.csproj.CopyComplete
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\obj\Debug\netcoreapp2.1\ImageUploader.UI.dll
+C:\Users\richard.lawrence\Desktop\Personal\Manydays\ImageUploader.UI\ImageUploader.UI\obj\Debug\netcoreapp2.1\ImageUploader.UI.pdb
