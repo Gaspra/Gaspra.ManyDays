@@ -8,7 +8,7 @@ namespace ImageUploader.UI
 {
     class Program
     {
-        private static readonly string manydaysJson = @"http://gaspra.co.uk/ManyDays.json";
+        private static readonly string manydaysJson = @"http://manydays.co.uk/ManyDays.json";
 
         static void Main(string[] args)
         {
