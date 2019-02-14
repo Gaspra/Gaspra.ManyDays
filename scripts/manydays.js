@@ -16,8 +16,6 @@ $(document).ready(function()
 
 function MapLoaded()
 {
-    LoadImageCollection();
-
     InitialiseGallery();
 }
 
