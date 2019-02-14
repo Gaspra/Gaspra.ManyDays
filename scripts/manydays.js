@@ -4,8 +4,13 @@ $(document).ready(function()
 
     InitialiseMap();
 
-    LoadImageCollection();
+
 });
+
+function MapLoaded()
+{
+    LoadImageCollection();
+}
 
 $(window).resize(function()
 {

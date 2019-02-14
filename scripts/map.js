@@ -2,6 +2,7 @@ var googleKey = "AIzaSyBb_OlGJ8FlcWBvL8eTY_niLspLZK6jnfw";
 var googleScript;
 var loadGoogleApiPromise = [];
 var manydaysMap;
+var manyDaysMapMarkers = [];
 
 function InitialiseMap()
 {
@@ -26,6 +27,8 @@ function LoadedGoogleApi()
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.HYBRID
     });
+
+    MapLoaded();
 }
 
 function SetMapLocation(image)
@@ -44,7 +47,7 @@ function AddMapMarker(image)
         cursor: pointer
     });
 
-    $(mapMarker).on('click', function() {
+    google.maps.event.addListener(mapMarker, 'click', function() {
         window.history.pushState('manydays+image_'+image.Id, 'image_'+image.Id, '?i='+image.Id);
     });
 
