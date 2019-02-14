@@ -18,8 +18,11 @@ function LoadGoogleScript()
 
 function LoadedGoogleApi()
 {
+    var lastImage = ImageCollection.Json["Images"].length - 1;
+    var image = ImageCollection.Json["Images"][lastImage];
+
     manydaysMap = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 1, lng: 1 },
+        center: { lat: image.Location.Lat, lng: image.Location.Lng },
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.HYBRID
     });
@@ -37,9 +40,12 @@ function AddMapMarker(image)
     var mapMarker = new google.maps.Marker({
         position: latLng,
         draggable: false,
-        title: image.Location.Name
-        //cursor: pointer
-        //url: link to image
+        title: image.Location.Name,
+        cursor: pointer
+    });
+
+    mapMarker.addListener('click', function() {
+        window.history.pushState('manydays+image_'+image.Id, 'image_'+image.Id, '?i='+image.Id);
     });
 
     mapMarker.setMap(manydaysMap);

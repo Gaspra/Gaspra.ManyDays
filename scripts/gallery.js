@@ -17,10 +17,6 @@ function InitialiseGallery()
     }
 
     ResizeThumbnails();
-
-    Promise.all(ManyDaysGallery.Promises).then(function() {
-        SetMapLocation(ImageCollection.Json["Images"][numberOfImages - 1]);
-    });
 }
 
 function InitialiseImage(image)
