@@ -7,11 +7,10 @@ $(document).ready(function()
     promise.done(function (data) {
         ImageCollection.Json = data;
 
+        InitialiseMap();
     });
 
     InitialiseContainers();
-
-    InitialiseMap();
 });
 
 function MapLoaded()
