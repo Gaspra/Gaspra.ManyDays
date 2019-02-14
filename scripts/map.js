@@ -43,8 +43,7 @@ function AddMapMarker(image)
     var mapMarker = new google.maps.Marker({
         position: latLng,
         draggable: false,
-        title: image.Location.Name,
-        cursor: pointer
+        title: image.Location.Name
     });
 
     google.maps.event.addListener(mapMarker, 'click', function() {
