@@ -44,7 +44,7 @@ function AddMapMarker(image)
         cursor: pointer
     });
 
-    mapMarker.addListener('click', function() {
+    $(mapMarker).on('click', function() {
         window.history.pushState('manydays+image_'+image.Id, 'image_'+image.Id, '?i='+image.Id);
     });
 
