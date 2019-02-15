@@ -3,6 +3,8 @@ var aboutContainer;
 var settingsContainer;
 var previewContainer;
 var previewBackground;
+var previewOpen;
+var previewClose;
 var resizeContainer;
 var navContainer;
 var pullContainer;
@@ -40,11 +42,17 @@ function InitialiseContainers()
     previewContainer.css("left", "0");
     previewContainer.css("position", "absolute");
     previewContainer.css("display", "none");
-
     previewBackground = $("#previewBackground");
     previewBackground.css("height", "100%");
     previewBackground.css("width", "100%");
     previewBackground.css("background-color", "rgba(255,255,255,0.6)");
+    previewImage = $("#previewImage");
+    previewImage.css("height", "80vh");
+    previewImage.css("width", "80vw");
+    previewImage.css("position", "absolute");
+    previewImage.css("top", "10vh");
+    previewImage.css("left", "10vw");
+    PreviewSetup();
 
     navContainer = $("#nav");
     navContainer.css("height", "50px");
@@ -80,4 +88,40 @@ function ResizeThumbnails()
 function ResizeContainers()
 {
     ResizeThumbnails();
+}
+
+function PreviewSetup()
+{
+    previewBackground.on('click', function() {
+        previewContainer.css("display", "none");
+    });
+}
+
+function PreviewImage(image)
+{
+    var loadPreviewPromise = LoadPreview(image);
+    loadPreviewPromise.then(function() {
+        previewContainer.css("display", "block");
+        previewImage.off();
+        previewImage.on('click',function() {
+            window.open(rawBucket + image.Filename + imagePrefix, '_blank');
+        });
+    });
+}
+
+function LoadPreview(image)
+{
+    return new Promise((resolve, reject) => {
+        $('<img/>').attr('src', previewBucket + image.Filename + imagePrefix)
+        .on('load', function ()
+        {
+            previewImage.css('background-image', 'url('+ previewBucket + image.Filename + imagePrefix +')');
+            resolve();
+        })
+        .on('error', function (err)
+        {
+            console.log('Failed to get image, error: ' + err);
+            resolve();
+        });
+    });
 }
