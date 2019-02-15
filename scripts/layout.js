@@ -2,6 +2,7 @@ var manydaysContainer;
 var aboutContainer;
 var settingsContainer;
 var previewContainer;
+var previewBackground;
 var resizeContainer;
 var navContainer;
 var pullContainer;
@@ -35,12 +36,13 @@ function InitialiseContainers()
     previewContainer = $("#preview");
     previewContainer.css("height", "100%");
     previewContainer.css("width", "100%");
+    previewContainer.css("position", "absolute");
     previewContainer.css("display", "none");
 
     previewBackground = $("#previewBackground");
     previewBackground.css("height", "100%");
     previewBackground.css("width", "100%");
-    previewBackground.css("background-color", "rgba(255,255,255,0.4)");
+    previewBackground.css("background-color", "rgba(255,255,255,0.6)");
 
     navContainer = $("#nav");
     navContainer.css("height", "50px");
