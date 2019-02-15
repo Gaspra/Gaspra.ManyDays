@@ -2,22 +2,25 @@ var googleKey = "AIzaSyBb_OlGJ8FlcWBvL8eTY_niLspLZK6jnfw";
 var googleScript;
 var loadGoogleApiPromise = [];
 var manydaysMap;
-var manyDaysMapMarkers = [];
+
+var mapPromise;
+function ConstructMapPromise()
+{
+    mapPromise = new Promise(function(resolve, reject)
+    {
+        googleScript = document.createElement("script");
+        googleScript.type = "text/javascript";
+        googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey+"&callback=ResolveMapPromise";
+        $("#scripts").append(googleScript);
+    });
+}
+
+function ResolveMapPromise()
+{
+    loadMapPromise.resolve();
+}
 
 function InitialiseMap()
-{
-    LoadGoogleScript();
-}
-
-function LoadGoogleScript()
-{
-    googleScript = document.createElement("script");
-    googleScript.type = "text/javascript";
-    googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey+"&callback=LoadedGoogleApi";
-    $("#scripts").append(googleScript);
-}
-
-function LoadedGoogleApi()
 {
     var lastImage = ImageCollection.Json["Images"].length - 1;
     var image = ImageCollection.Json["Images"][lastImage];
@@ -27,8 +30,6 @@ function LoadedGoogleApi()
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.HYBRID
     });
-
-    MapLoaded();
 }
 
 function SetMapLocation(image)

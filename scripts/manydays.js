@@ -3,22 +3,41 @@ var ImageCollection = {};
 
 $(document).ready(function()
 {
-    var promise = $.get('../ManyDays.json');
-    promise.done(function (data) {
-        ImageCollection.Json = data;
 
+    ConstructImageCollectionPromise();
+    ConstructMapPromise();
+
+    Promise.all([mapPromise, imageCollectionPromise]).then(function()
+    {
         InitialiseMap();
-    });
+        InitialiseContainers();
+        InitialiseGallery();
 
-    InitialiseContainers();
+    }), function() {
+        //something went boom
+    };
+
 });
-
-function MapLoaded()
-{
-    InitialiseGallery();
-}
 
 $(window).resize(function()
 {
     ResizeContainers();
 });
+
+
+var imageCollectionPromise;
+function ConstructImageCollectionPromise()
+{
+    imageCollectionPromise = new Promise(function(resolve, reject)
+    {
+        $.get('../ManyDays.json')
+            .done(function(data)
+            {
+                ImageCollection.Json = data;
+                resolve();
+            })
+            .fail(function() {
+                reject();
+            });
+    });
+}
