@@ -43,7 +43,6 @@ function CreateClickEvent(image)
 {
     $('#img_'+image.Id).on('click', function()
     {
-        //window.open(rawBucket + image.Filename + imagePrefix, '_blank');
-        previewContainer.css("display", "block");
+        PreviewImage(image);
     });
 }
