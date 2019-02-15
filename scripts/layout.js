@@ -33,7 +33,14 @@ function InitialiseContainers()
     settingsContainer.css("display", "none");
 
     previewContainer = $("#preview");
+    previewContainer.css("height", "100%");
+    previewContainer.css("width", "100%");
     previewContainer.css("display", "none");
+
+    previewBackground = $("#previewBackground");
+    previewBackground.css("height", "100%");
+    previewBackground.css("width", "100%");
+    previewBackground.css("background-color", "rgba(255,255,255,0.4)");
 
     navContainer = $("#nav");
     navContainer.css("height", "50px");

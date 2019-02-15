@@ -4,6 +4,7 @@ var loadGoogleApiPromise = [];
 var manydaysMap;
 
 var mapPromise;
+var mapResolver;
 function ConstructMapPromise()
 {
     mapPromise = new Promise(function(resolve, reject)
@@ -12,12 +13,13 @@ function ConstructMapPromise()
         googleScript.type = "text/javascript";
         googleScript.src = "https://maps.googleapis.com/maps/api/js?key="+googleKey+"&callback=ResolveMapPromise";
         $("#scripts").append(googleScript);
+        mapResolver = resolve;
     });
 }
 
 function ResolveMapPromise()
 {
-    loadMapPromise.resolve();
+    mapResolver();
 }
 
 function InitialiseMap()

@@ -21,8 +21,6 @@ function InitialiseGallery()
 
 function InitialiseImage(image)
 {
-    console.log(image.Id + ': ' + image.Name + ' ' + image.Location.Name + ' ' + image.Filename);
-
     return new Promise((resolve, reject) => {
         $('<img/>').attr('src', thumbnailBucket + image.Filename + imagePrefix)
         .on('load', function ()
@@ -45,6 +43,13 @@ function CreateClickEvent(image)
 {
     $('#img_'+image.Id).on('click', function()
     {
-        window.open(rawBucket + image.Filename + imagePrefix, '_blank');
+        //window.open(rawBucket + image.Filename + imagePrefix, '_blank');
+
+        previewContainer.css("display", "block");
+
+        previewBackground.on('click', function() {
+            previewContainer.css("display", "none");
+            previewBackground.off('click');
+        });
     });
 }

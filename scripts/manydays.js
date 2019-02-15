@@ -3,7 +3,6 @@ var ImageCollection = {};
 
 $(document).ready(function()
 {
-
     ConstructImageCollectionPromise();
     ConstructMapPromise();
 
