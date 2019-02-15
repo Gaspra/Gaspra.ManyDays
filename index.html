@@ -18,7 +18,7 @@
     <!--preview layer-->
     <div id="preview">
         <div id="previewBackground"></div>
-        <div id="previewImage"></div>
+        <div id="previewImage" class="imgProperties"></div>
         <div id="previewOpen"></div>
         <div id="previewClose"></div>
     </div>
@@ -26,6 +26,12 @@
 </div>
 
 <style type="text/css">
+    .imgProperties {
+        background-position:center;
+        background-size:cover;
+        background-repeat:no-repeat;
+        cursor:pointer;
+    }
     .imgThumbnail {
         position: relative;
         float: left;
