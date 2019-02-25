@@ -44,13 +44,13 @@ function InitialiseContainers()
     previewContainer.css("left", "0");
     previewContainer.css("position", "absolute");
     previewContainer.css("display", "none");
-    previewBackground.on('click', function() {
-        previewContainer.css("display", "none");
-    });
     previewBackground = $("#previewBackground");
     previewBackground.css("height", "100%");
     previewBackground.css("width", "100%");
     previewBackground.css("background-color", "rgba(255,255,255,0.6)");
+    previewBackground.on('click', function() {
+        previewContainer.css("display", "none");
+    });
     previewImage = $("#previewImage");
     previewImage.css("height", "80vh");
     previewImage.css("width", "80vw");
