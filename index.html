@@ -9,7 +9,7 @@
 
     <!--main layer-->
     <div id="nav">
-        <div id="navStatus"></div>
+        <div id="navStatus" class="fontDefault"></div>
     </div>
     <div id="map"></div>
     <div id="resize"></div>
@@ -20,9 +20,10 @@
     <!--preview layer-->
     <div id="preview">
         <div id="previewBackground"></div>
-        <div id="previewImage" class="imgProperties"></div>
+        <div id="previewTitle" class="fontDefault"></div>
         <div id="previewOpen"></div>
         <div id="previewClose"></div>
+        <div id="previewImage" class="imgProperties"></div>
     </div>
 
 </div>
@@ -47,6 +48,11 @@
     }
     .imgHidden {
         display: none;
+    }
+    .fontDefault {
+        font-family:Arial;
+        font-size:1em;
+        color:#000000;
     }
 </style>
 
