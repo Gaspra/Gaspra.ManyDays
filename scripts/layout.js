@@ -3,6 +3,7 @@ var aboutContainer;
 var settingsContainer;
 var previewContainer;
 var previewBackground;
+var previewTitle;
 var previewOpen;
 var previewClose;
 var resizeContainer;
@@ -43,6 +44,9 @@ function InitialiseContainers()
     previewContainer.css("left", "0");
     previewContainer.css("position", "absolute");
     previewContainer.css("display", "none");
+    previewBackground.on('click', function() {
+        previewContainer.css("display", "none");
+    });
     previewBackground = $("#previewBackground");
     previewBackground.css("height", "100%");
     previewBackground.css("width", "100%");
@@ -51,9 +55,12 @@ function InitialiseContainers()
     previewImage.css("height", "80vh");
     previewImage.css("width", "80vw");
     previewImage.css("position", "absolute");
-    previewImage.css("top", "10vh");
-    previewImage.css("left", "10vw");
-    PreviewSetup();
+    previewTitle = $("#previewTitle");
+    previewTitle.css("height", "8vh");
+    previewTitle.css("width", "fit-content");
+    previewTitle.css("padding" "1vh");
+    previewTitle.css("border-radius", "3px");
+    previewTitle.css("background-color", "#ffffff")
 
     navContainer = $("#nav");
     navContainer.css("height", "50px");
@@ -64,7 +71,6 @@ function InitialiseContainers()
     navStatus.css("height", "50px");
     navStatus.css("width", "fit-content");
     navStatus.css("line-height", "50px");
-    navStatus.css("font-size", "12px");
     navStatus.css("position", "relative");
     navStatus.css("margin", "auto auto");
 
@@ -96,42 +102,4 @@ function ResizeThumbnails()
 function ResizeContainers()
 {
     ResizeThumbnails();
-}
-
-function PreviewSetup()
-{
-    previewBackground.on('click', function() {
-        previewContainer.css("display", "none");
-    });
-}
-
-function PreviewImage(image)
-{
-    SetStatus("Loading "+image.Name, 0)
-    var loadPreviewPromise = LoadPreview(image);
-    loadPreviewPromise.then(function() {
-        SetStatus("", 0)
-        previewContainer.css("display", "block");
-        previewImage.off();
-        previewImage.on('click',function() {
-            window.open(rawBucket + image.Filename + imagePrefix, '_blank');
-        });
-    });
-}
-
-function LoadPreview(image)
-{
-    return new Promise((resolve, reject) => {
-        $('<img/>').attr('src', previewBucket + image.Filename + imagePrefix)
-        .on('load', function ()
-        {
-            previewImage.css('background-image', 'url('+ previewBucket + image.Filename + imagePrefix +')');
-            resolve();
-        })
-        .on('error', function (err)
-        {
-            console.log('Failed to get image, error: ' + err);
-            resolve();
-        });
-    });
 }
