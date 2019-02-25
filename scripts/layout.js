@@ -7,6 +7,7 @@ var previewOpen;
 var previewClose;
 var resizeContainer;
 var navContainer;
+var navStatus;
 var pullContainer;
 var mapContainer;
 var galleryContainer;
@@ -59,6 +60,12 @@ function InitialiseContainers()
     navContainer.css("width", "100%");
     navContainer.css("background-color", "#ffffff");
     navContainer.css("position", "relative");
+    navStatus = $("#navStatus");
+    navStatus.css("height", "50px");
+    navStatus.css("line-height", "50px");
+    navStatus.css("font-size", "12px");
+    navStatus.css("position", "relative");
+    navStatus.css("margin", "auto auto");
 
     resizeContainer = $("#resize");
     resizeContainer.css("height", "20px");
@@ -99,8 +106,10 @@ function PreviewSetup()
 
 function PreviewImage(image)
 {
+    SetStatus("Loading "+image.Name, 0)
     var loadPreviewPromise = LoadPreview(image);
     loadPreviewPromise.then(function() {
+        SetStatus("", 0)
         previewContainer.css("display", "block");
         previewImage.off();
         previewImage.on('click',function() {
