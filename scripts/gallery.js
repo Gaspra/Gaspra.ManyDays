@@ -46,3 +46,34 @@ function CreateClickEvent(image)
         PreviewImage(image);
     });
 }
+
+function PreviewImage(image)
+{
+    SetStatus("Loading "+image.Name, 0)
+    var loadPreviewPromise = LoadPreview(image);
+    loadPreviewPromise.then(function() {
+        SetStatus("", 0)
+        previewContainer.css("display", "block");
+        previewImage.off();
+        previewImage.on('click',function() {
+            window.open(rawBucket + image.Filename + imagePrefix, '_blank');
+        });
+    });
+}
+
+function LoadPreview(image)
+{
+    return new Promise((resolve, reject) => {
+        $('<img/>').attr('src', previewBucket + image.Filename + imagePrefix)
+        .on('load', function ()
+        {
+            previewImage.css('background-image', 'url('+ previewBucket + image.Filename + imagePrefix +')');
+            resolve();
+        })
+        .on('error', function (err)
+        {
+            console.log('Failed to get image, error: ' + err);
+            resolve();
+        });
+    });
+}
