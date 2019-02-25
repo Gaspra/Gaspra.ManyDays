@@ -58,7 +58,7 @@ function InitialiseContainers()
     previewTitle = $("#previewTitle");
     previewTitle.css("height", "8vh");
     previewTitle.css("width", "fit-content");
-    previewTitle.css("padding" "1vh");
+    previewTitle.css("padding", "1vh");
     previewTitle.css("border-radius", "3px");
     previewTitle.css("background-color", "#ffffff")
 
