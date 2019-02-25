@@ -62,6 +62,7 @@ function InitialiseContainers()
     navContainer.css("position", "relative");
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
+    navStatus.css("width", "fit-content");
     navStatus.css("line-height", "50px");
     navStatus.css("font-size", "12px");
     navStatus.css("position", "relative");
