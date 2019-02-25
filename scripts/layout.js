@@ -53,14 +53,18 @@ function InitialiseContainers()
     });
     previewImage = $("#previewImage");
     previewImage.css("height", "80vh");
-    previewImage.css("width", "80vw");
     previewImage.css("position", "absolute");
+    previewImage.css("width", "80vw");
+    previewImage.css("top", "10vh");
     previewTitle = $("#previewTitle");
     previewTitle.css("height", "8vh");
-    previewTitle.css("width", "fit-content");
-    previewTitle.css("padding", "1vh");
-    previewTitle.css("border-radius", "3px");
+    previewTitle.css("width", "80vw");
+    previewTitle.css("top", "2vh");
+    previewTitle.css("border-radius", "3px 3px 0 0");
     previewTitle.css("background-color", "#ffffff")
+    previewTitle.css("position", "absolute");
+    previewTitle.css("text-align", "center");
+    previewTitle.css("line-height", "8vh");
 
     navContainer = $("#nav");
     navContainer.css("height", "50px");
