@@ -53,6 +53,7 @@ function PreviewImage(image)
     var loadPreviewPromise = LoadPreview(image);
     loadPreviewPromise.then(function() {
         SetStatus("", 0)
+        previewTitle.text(image.Filename + ": " + image.id);
         previewContainer.css("display", "block");
         previewImage.off();
         previewImage.on('click',function() {
