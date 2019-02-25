@@ -3,6 +3,7 @@ var aboutContainer;
 var settingsContainer;
 var previewContainer;
 var previewBackground;
+var previewTitleContainer;
 var previewTitle;
 var previewOpen;
 var previewClose;
@@ -47,7 +48,7 @@ function InitialiseContainers()
     previewBackground = $("#previewBackground");
     previewBackground.css("height", "100%");
     previewBackground.css("width", "100%");
-    previewBackground.css("background-color", "rgba(255,255,255,0.6)");
+    previewBackground.css("background-color", "rgba(0,0,0,0.6)");
     previewBackground.on('click', function() {
         previewContainer.css("display", "none");
     });
@@ -56,11 +57,17 @@ function InitialiseContainers()
     previewImage.css("position", "absolute");
     previewImage.css("width", "80vw");
     previewImage.css("top", "10vh");
+    previewImage.css("left", "10vw");
+    previewTitleContainer = $("#previewTitleContainer");
+    previewTitleContainer.css("height", "8vh");
+    previewTitleContainer.css("width", "80vw");
+    previewTitleContainer.css("top", "2vh");
+    previewTitleContainer.css("left", "10vw");
     previewTitle = $("#previewTitle");
-    previewTitle.css("height", "8vh");
-    previewTitle.css("width", "80vw");
-    previewTitle.css("top", "2vh");
-    previewTitle.css("border-radius", "3px 3px 0 0");
+    previewTitle.css("height", "100%");
+    previewTitle.css("width", "fit-content");
+    previewTitle.css("padding", "0 10px");
+    previewTitle.css("border-radius", "5px 5px 0 0");
     previewTitle.css("background-color", "#ffffff")
     previewTitle.css("position", "absolute");
     previewTitle.css("text-align", "center");
