@@ -86,13 +86,15 @@ function InitialiseContainers()
     navPause.css("line-height", "50px");
     navPause.css("position", "relative");
     navPause.css("background-color", "rgba(100,100,100,0.6)")
+    navPause.css("margin", "0");
+    navPause.css("float", "left");
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
     navStatus.css("width", "fit-content");
     navStatus.css("line-height", "50px");
     navStatus.css("position", "relative");
-    navStatus.css("margin", "auto auto");
-
+    navStatus.css("margin", "0");
+    navStatus.css("float", "left");
     resizeContainer = $("#resize");
     resizeContainer.css("height", "20px");
     resizeContainer.css("width", "100%");
