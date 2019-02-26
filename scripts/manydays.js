@@ -16,9 +16,6 @@ $(document).ready(function()
         InitialiseMap();
 
         InitialiseGallery();
-
-        SetStatus('Loading completed', 5);
-
     }), function() {
         //something went boom
     };
