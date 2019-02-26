@@ -31,7 +31,7 @@ function RecurseLoadThumbnails()
 {
     if(loadThumbnails)
     {
-        Promise.all(LoadThumbnailsBatch()).then(function() {
+        Promise.all([LoadThumbnailsBatch()]).then(function() {
             RecurseLoadThumbnails();
         });
     }
