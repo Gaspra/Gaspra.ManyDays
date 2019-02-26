@@ -19,7 +19,7 @@ function InitialiseGallery()
 
     navPause.on('click', function()
     {
-        ToggleThumbnailLoading();
+        ToggleThumbnailsLoading();
     });
 
     RecurseLoadThumbnails();
@@ -42,7 +42,7 @@ function RecurseLoadThumbnails()
     }
 }
 
-function ToggleThumbnailLoading()
+function ToggleThumbnailsLoading()
 {
     loadThumbnails = !loadThumbnails;
     if(loadThumbnails && lastLoadedThumbnail > -1)
@@ -51,7 +51,7 @@ function ToggleThumbnailLoading()
     }
 }
 
-function LoadThumbnailBatch()
+function LoadThumbnailsBatch()
 {
     return new Promise(function(resolve, reject)
     {
