@@ -3,39 +3,98 @@ var thumbnailBucket = googleBucket + "thumbnail/";
 var previewBucket = googleBucket + "preview/";
 var rawBucket = googleBucket + "raw/";
 var imagePrefix = ".png";
+var galleryPromiseBatchSize = 10;
+var lastLoadedThumbnail;
+var loadThumbnails = true;
 
 function InitialiseGallery()
 {
-    var numberOfImages = ImageCollection.Json["Images"].length;
-
     ManyDaysGallery.Promises = [];
+    lastLoadedThumbnail = ImageCollection.ImageCount - 1;
 
-    for(var i = numberOfImages - 1; i--; i > -1)
+    for(var i = ImageCollection.ImageCount - 1; i--; i > -1)
     {
         $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].Id+'"></div>');
-        ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
     }
+
+    navPause.on('click', function()
+    {
+        ToggleThumbnailLoading();
+    });
+
+    RecurseLoadThumbnails();
 
     ResizeThumbnails();
 }
 
-function InitialiseImage(image)
+function RecurseLoadThumbnails()
 {
-    return new Promise((resolve, reject) => {
-        $('<img/>').attr('src', thumbnailBucket + image.Filename + imagePrefix)
-        .on('load', function ()
+    if(loadThumbnails)
+    {
+        Promise.all(LoadThumbnailsBatch()).then(function() {
+            RecurseLoadThumbnails();
+        });
+    }
+
+    if(lastLoadedThumbnail = 0)
+    {
+        navPause.css("display", "none");
+    }
+}
+
+function ToggleThumbnailLoading()
+{
+    loadThumbnails = !loadThumbnails;
+    if(loadThumbnails && lastLoadedThumbnail > -1)
+    {
+        RecurseLoadThumbnails();
+    }
+}
+
+function LoadThumbnailBatch()
+{
+    return new Promise(function(resolve, reject)
+    {
+        var endOfBatch = lastLoadedThumbnail - galleryPromiseBatchSize;
+
+        SetStatus("Loading batch: " + lastLoadedThumbnail + " - " + endOfBatch, 0);
+
+        if(endOfBatch < 0)
         {
-            $('#img_'+image.Id).css('background-image', 'url('+ thumbnailBucket + image.Filename + imagePrefix +')');
-            $('#img_'+image.Id).removeClass('imgHidden');
-            AddMapMarker(image);
-            CreateClickEvent(image);
-            resolve();
-        })
-        .on('error', function (err)
+            endOfBatch = 0;
+        }
+
+        for(var i = lastLoadedThumbnail; i--; i > endOfBatch)
         {
-            console.log('Failed to get image, error: ' + err);
+            ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
+        }
+
+        Promise.all(ManyDaysGallery.Promises).then(function()
+        {
+            lastLoadedThumbnail = endOfBatch;
             resolve();
         });
+    });
+}
+
+function InitialiseImage(image)
+{
+    return new Promise((resolve, reject)
+    {
+        $('<img/>').attr('src', thumbnailBucket + image.Filename + imagePrefix)
+            .on('load', function ()
+            {
+                $('#img_'+image.Id).css('background-image', 'url('+ thumbnailBucket + image.Filename + imagePrefix +')');
+                $('#img_'+image.Id).removeClass('imgHidden');
+                AddMapMarker(image);
+                CreateClickEvent(image);
+                resolve();
+            })
+            .on('error', function (err)
+            {
+                console.log('Failed to get image, error: ' + err);
+                resolve(); //lol
+            });
     });
 }
 
