@@ -12,7 +12,7 @@ function InitialiseGallery()
     ManyDaysGallery.Promises = [];
     lastLoadedThumbnail = ImageCollection.ImageCount - 1;
 
-    for(var i = ImageCollection.ImageCount - 1; i--; i > -1)
+    for(var i = ImageCollection.ImageCount - 1; i > -1; i--)
     {
         $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].Id+'"></div>');
     }
@@ -70,7 +70,7 @@ function LoadThumbnailsBatch()
             endOfBatch = 0;
         }
 
-        for(var i = lastLoadedThumbnail; i--; i > endOfBatch)
+        for(var i = lastLoadedThumbnail; endOfBatch < i; i--)
         {
             ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
         }
