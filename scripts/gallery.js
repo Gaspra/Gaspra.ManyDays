@@ -45,6 +45,15 @@ function RecurseLoadThumbnails()
 function ToggleThumbnailsLoading()
 {
     loadThumbnails = !loadThumbnails;
+
+    if(loadThumbnails)
+    {
+        navPause.text("Loading");
+    } else
+    {
+        navPause.text("Paused");
+    }
+
     if(loadThumbnails && lastLoadedThumbnail > -1)
     {
         RecurseLoadThumbnails();
@@ -56,8 +65,6 @@ function LoadThumbnailsBatch()
     return new Promise(function(resolve, reject)
     {
         var endOfBatch = lastLoadedThumbnail - galleryPromiseBatchSize;
-
-        SetStatus("Loading batch: " + lastLoadedThumbnail + " - " + endOfBatch, 0);
 
         if(endOfBatch < 0)
         {
@@ -71,6 +78,7 @@ function LoadThumbnailsBatch()
 
         Promise.all(ManyDaysGallery.Promises).then(function()
         {
+            SetStatus("Loaded batch: " + lastLoadedThumbnail + " - " + endOfBatch, 0);
             lastLoadedThumbnail = endOfBatch;
             resolve();
         });
