@@ -5,7 +5,7 @@ var rawBucket = googleBucket + "raw/";
 var imagePrefix = ".png";
 var galleryPromiseBatchSize = 10;
 var lastLoadedThumbnail;
-var loadThumbnails = true;
+var loadThumbnails = false;
 
 function InitialiseGallery()
 {
@@ -38,6 +38,7 @@ function RecurseLoadThumbnails()
 
     if(lastLoadedThumbnail = 0)
     {
+        SetStatus('Loading completed', 5);
         navPause.css("display", "none");
     }
 }
@@ -66,7 +67,7 @@ function LoadThumbnailsBatch()
     {
         var endOfBatch = lastLoadedThumbnail - galleryPromiseBatchSize;
 
-        if(endOfBatch < 0)
+        if(endOfBatch < -1)
         {
             endOfBatch = 0;
         }
@@ -78,6 +79,7 @@ function LoadThumbnailsBatch()
 
         Promise.all(ManyDaysGallery.Promises).then(function()
         {
+            ManyDaysGallery.Promises = [];
             SetStatus("Loaded batch: " + lastLoadedThumbnail + " to " + endOfBatch, 0);
             lastLoadedThumbnail = endOfBatch;
             resolve();
