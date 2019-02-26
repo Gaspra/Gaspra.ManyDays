@@ -4,7 +4,6 @@ var previewBucket = googleBucket + "preview/";
 var rawBucket = googleBucket + "raw/";
 var imagePrefix = ".png";
 var galleryPromiseBatchSize = 10;
-var lastLoadedThumbnail;
 var loadThumbnails = false;
 
 function InitialiseGallery()
@@ -48,7 +47,7 @@ function ToggleThumbnailsLoading()
     if(loadThumbnails)
     {
         navPause.text("Loading");
-    } 
+    }
     else if (!loadThumbnails)
     {
         navPause.text("Paused");
@@ -64,19 +63,23 @@ function LoadThumbnailsBatch()
 {
     return new Promise(function(resolve, reject)
     {
-        var endOfBatch = lastLoadedThumbnail - galleryPromiseBatchSize;
+        SetStatus("Loading batch of: " + lastLoadedThumbnail + " to " + endOfBatch, 0);
 
-        if(endOfBatch < -1)
-        {
-            endOfBatch = 0;
-        }
-
-        SetStatus("Loading batch: " + lastLoadedThumbnail + " to " + endOfBatch, 0);
-        
-        for(var i = lastLoadedThumbnail; endOfBatch < i; i--)
-        {
-            ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
-        }
+        var loading = 0;
+        ImageCollection.Json["Images"].forEach(function(image) {
+            if(!ManyDaysGallery.Loaded.includes(image.Id))
+            {
+                if(loading < galleryPromiseBatchSize)
+                {
+                    ManyDaysGallery.Promises.push(InitialiseImage(image));
+                    loading++;
+                }
+                else if(loading >= galleryPromiseBatchSize)
+                {
+                    return;
+                }
+            }
+        });
 
         Promise.all(ManyDaysGallery.Promises).then(function()
         {
@@ -98,7 +101,7 @@ function InitialiseImage(image)
                 $('#img_'+image.Id).removeClass('imgHidden');
                 AddMapMarker(image);
                 CreateClickEvent(image);
-                console.log('loaded image, about to resolve: ' + image.Id + ' ' + image.Filename);
+                ManyDaysGallery.Loaded.push(image.Id);
                 resolve();
             })
             .on('error', function (err)
