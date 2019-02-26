@@ -98,6 +98,7 @@ function InitialiseImage(image)
                 $('#img_'+image.Id).removeClass('imgHidden');
                 AddMapMarker(image);
                 CreateClickEvent(image);
+                console.log('loaded image, about to resolve: ' + image.Id + ' ' + image.Filename);
                 resolve();
             })
             .on('error', function (err)
