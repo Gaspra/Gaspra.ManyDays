@@ -81,7 +81,7 @@ function LoadThumbnailsBatch()
         Promise.all(ManyDaysGallery.Promises).then(function()
         {
             ManyDaysGallery.Promises = [];
-            lastLoadedThumbnail = endOfBatch;
+            lastLoadedThumbnail = lastLoadedThumbnail - galleryPromiseBatchSize;
             resolve();
         });
     });
