@@ -49,7 +49,7 @@ function ToggleThumbnailsLoading()
     {
         navPause.text("Loading");
     } 
-    elseif (!loadThumbnails)
+    else if (!loadThumbnails)
     {
         navPause.text("Paused");
     }
