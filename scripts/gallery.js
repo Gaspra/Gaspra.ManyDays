@@ -79,7 +79,7 @@ function LoadThumbnailBatch()
 
 function InitialiseImage(image)
 {
-    return new Promise((resolve, reject)
+    return new Promise(function(resolve, reject)
     {
         $('<img/>').attr('src', thumbnailBucket + image.Filename + imagePrefix)
             .on('load', function ()
