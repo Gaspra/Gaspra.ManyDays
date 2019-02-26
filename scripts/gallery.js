@@ -22,8 +22,6 @@ function InitialiseGallery()
         ToggleThumbnailsLoading();
     });
 
-    RecurseLoadThumbnails();
-
     ResizeThumbnails();
 }
 
