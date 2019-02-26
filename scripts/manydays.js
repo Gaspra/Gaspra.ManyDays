@@ -14,6 +14,7 @@ $(document).ready(function()
         SetStatus('Initialising map and gallery', 0);
 
         InitialiseMap();
+
         InitialiseGallery();
 
         SetStatus('Loading completed', 5);
@@ -48,6 +49,7 @@ function ConstructImageCollectionPromise()
             .done(function(data)
             {
                 ImageCollection.Json = data;
+                ImageCollection.ImageCount = data["Images"].length;
                 resolve();
             })
             .fail(function() {
