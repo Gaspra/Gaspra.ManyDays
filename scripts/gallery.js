@@ -9,6 +9,7 @@ var loadThumbnails = false;
 function InitialiseGallery()
 {
     ManyDaysGallery.Promises = [];
+    ManyDaysGallery.Loaded = [];
     lastLoadedThumbnail = ImageCollection.ImageCount - 1;
 
     for(var i = ImageCollection.ImageCount - 1; i > -1; i--)
