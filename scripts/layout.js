@@ -9,6 +9,7 @@ var previewOpen;
 var previewClose;
 var resizeContainer;
 var navContainer;
+var navPause;
 var navStatus;
 var pullContainer;
 var mapContainer;
@@ -61,18 +62,17 @@ function InitialiseContainers()
     previewTitleContainer = $("#previewTitleContainer");
     previewTitleContainer.css("height", "8vh");
     previewTitleContainer.css("width", "80vw");
-    previewTitleContainer.css("top", "2vh");
+    previewTitleContainer.css("top", "1vh");
     previewTitleContainer.css("left", "10vw");
-    previewTitleContainer.css("position", "absolute");
     previewTitle = $("#previewTitle");
     previewTitle.css("height", "100%");
     previewTitle.css("width", "fit-content");
     previewTitle.css("padding", "0 10px");
-    previewTitle.css("border-radius", "5px 5px 0 0");
-    previewTitle.css("background-color", "rgba(255,255,255,0.6)");
-    previewTitle.css("position", "relative");
-    previewTitle.css("margin", "auto");
+    previewTitle.css("border-radius", "3px");
+    previewTitle.css("background-color", "rgba(0,0,0,0.8)")
+    previewTitle.css("position", "absolute");
     previewTitle.css("text-align", "center");
+    previewTitle.css("color", "rgb(255,255,255) !important")
     previewTitle.css("line-height", "8vh");
 
     navContainer = $("#nav");
@@ -80,6 +80,12 @@ function InitialiseContainers()
     navContainer.css("width", "100%");
     navContainer.css("background-color", "#ffffff");
     navContainer.css("position", "relative");
+    navPause = $("#navPause");
+    navPause.css("height", "50px");
+    navStatus.css("width", "fit-content");
+    navStatus.css("line-height", "50px");
+    navStatus.css("position", "relative");
+    navStatus.css("background-color", "rgba(100,100,100,0.6)")
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
     navStatus.css("width", "fit-content");
