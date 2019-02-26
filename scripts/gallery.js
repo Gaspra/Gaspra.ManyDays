@@ -63,8 +63,6 @@ function LoadThumbnailsBatch()
 {
     return new Promise(function(resolve, reject)
     {
-        SetStatus("Loading batch of: " + lastLoadedThumbnail + " to " + endOfBatch, 0);
-
         var loading = 0;
         ImageCollection.Json["Images"].forEach(function(image) {
             if(!ManyDaysGallery.Loaded.includes(image.Id))
