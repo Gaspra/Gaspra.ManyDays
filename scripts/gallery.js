@@ -31,7 +31,7 @@ function RecurseLoadThumbnails()
 {
     if(loadThumbnails)
     {
-        Promise.all([LoadThumbnailsBatch()]).then(function() {
+        LoadThumbnailsBatch().then(function() {
             RecurseLoadThumbnails();
         });
     }
@@ -78,7 +78,7 @@ function LoadThumbnailsBatch()
 
         Promise.all(ManyDaysGallery.Promises).then(function()
         {
-            SetStatus("Loaded batch: " + lastLoadedThumbnail + " - " + endOfBatch, 0);
+            SetStatus("Loaded batch: " + lastLoadedThumbnail + " to " + endOfBatch, 0);
             lastLoadedThumbnail = endOfBatch;
             resolve();
         });
