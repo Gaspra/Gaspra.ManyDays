@@ -48,7 +48,8 @@ function ToggleThumbnailsLoading()
     if(loadThumbnails)
     {
         navPause.text("Loading");
-    } else
+    } 
+    elseif (!loadThumbnails)
     {
         navPause.text("Paused");
     }
@@ -70,6 +71,8 @@ function LoadThumbnailsBatch()
             endOfBatch = 0;
         }
 
+        SetStatus("Loading batch: " + lastLoadedThumbnail + " to " + endOfBatch, 0);
+        
         for(var i = lastLoadedThumbnail; endOfBatch < i; i--)
         {
             ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][i]));
@@ -78,7 +81,6 @@ function LoadThumbnailsBatch()
         Promise.all(ManyDaysGallery.Promises).then(function()
         {
             ManyDaysGallery.Promises = [];
-            SetStatus("Loaded batch: " + lastLoadedThumbnail + " to " + endOfBatch, 0);
             lastLoadedThumbnail = endOfBatch;
             resolve();
         });
