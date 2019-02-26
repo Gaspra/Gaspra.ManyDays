@@ -106,6 +106,7 @@ function InitialiseImage(image)
             .on('error', function (err)
             {
                 console.log('Failed to get image, error: ' + err);
+                ManyDaysGallery.Loaded.push(image.Id);
                 resolve(); //lol
             });
     });
