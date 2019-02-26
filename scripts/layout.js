@@ -82,10 +82,10 @@ function InitialiseContainers()
     navContainer.css("position", "relative");
     navPause = $("#navPause");
     navPause.css("height", "50px");
-    navStatus.css("width", "fit-content");
-    navStatus.css("line-height", "50px");
-    navStatus.css("position", "relative");
-    navStatus.css("background-color", "rgba(100,100,100,0.6)")
+    navPause.css("width", "fit-content");
+    navPause.css("line-height", "50px");
+    navPause.css("position", "relative");
+    navPause.css("background-color", "rgba(100,100,100,0.6)")
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
     navStatus.css("width", "fit-content");
