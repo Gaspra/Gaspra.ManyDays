@@ -65,7 +65,7 @@ function LoadThumbnailsBatch()
     return new Promise(function(resolve, reject)
     {
         var loading = 0;
-        ImageCollection.Json["Images"].forEach(function(image) {
+        ImageCollection.Json["Images"].slice().reverse().forEach(function(image) {
             if(!ManyDaysGallery.Loaded.includes(image.Id))
             {
                 if(loading < galleryPromiseBatchSize)
