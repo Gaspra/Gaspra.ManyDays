@@ -60,9 +60,9 @@ function InitialiseContainers()
     previewImage.css("top", "10vh");
     previewImage.css("left", "10vw");
     previewTitleContainer = $("#previewTitleContainer");
-    previewTitleContainer.css("height", "8vh");
+    previewTitleContainer.css("height", "6vh");
     previewTitleContainer.css("width", "80vw");
-    previewTitleContainer.css("top", "1vh");
+    previewTitleContainer.css("top", "2vh");
     previewTitleContainer.css("left", "10vw");
     previewTitleContainer.css("position", "absolute");
     previewTitle = $("#previewTitle");
@@ -70,7 +70,7 @@ function InitialiseContainers()
     previewTitle.css("width", "fit-content");
     previewTitle.css("padding", "0 10px");
     previewTitle.css("border-radius", "3px");
-    previewTitle.css("background-color", "rgba(255,255,255,0.8)")
+    previewTitle.css("background-color", "rgba(255,255,255,0.9)")
     previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
     previewTitle.css("line-height", "8vh");
