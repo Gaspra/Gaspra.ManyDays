@@ -47,7 +47,14 @@ function RecurseLoadThumbnails()
     if(loadThumbnails)
     {
         LoadThumbnailsBatch().then(function() {
-            RecurseLoadThumbnails();
+            if(ManyDaysGallery.Loaded.length != ImageCollection.ImageCount)
+            {
+                RecurseLoadThumbnails();
+            }
+            else
+            {
+                resolve();
+            }
         });
     }
 }
@@ -118,6 +125,7 @@ function LoadedImage(imageId)
     {
         SetStatus("Finished loading all [" + ImageCollection.ImageCount + "] thumbnails!", 6);
         navPause.css("display", "none");
+        loadThumbnails = false;
     }
 }
 
