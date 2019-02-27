@@ -142,14 +142,20 @@ function PreviewImage(image)
     SetStatus("Loading "+image.Name, 0)
     var loadPreviewPromise = LoadPreview(image);
     loadPreviewPromise.then(function() {
-        SetStatus("", 0)
-        previewTitle.text(image.Name + ": " + image.Id);
+        SetStatus("", 0);
+        SetPreviewText(image);
         previewContainer.css("display", "block");
         previewImage.off();
         previewImage.on('click',function() {
             window.open(rawBucket + image.Filename + imagePrefix, '_blank');
         });
     });
+}
+
+function SetPreviewText(image)
+{
+    var previewHtml = "<b>[" + image.Id + "] " + image.Name + "</b></br>" + image.Location.Name + " (" + image.Location.Lat + ", " + image.Location.Lng + ")";
+    previewTitle.html(previewHtml);
 }
 
 function LoadPreview(image)
