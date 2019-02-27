@@ -10,7 +10,6 @@ function InitialiseGallery()
 {
     ManyDaysGallery.Promises = [];
     ManyDaysGallery.Loaded = [];
-    lastLoadedThumbnail = ImageCollection.ImageCount - 1;
 
     for(var i = ImageCollection.ImageCount - 1; i > -1; i--)
     {
@@ -25,6 +24,24 @@ function InitialiseGallery()
     ResizeThumbnails();
 }
 
+function ToggleThumbnailsLoading()
+{
+    loadThumbnails = !loadThumbnails;
+
+    if(loadThumbnails)
+    {
+        if(ManyDaysGallery.Loaded.length != ImageCollection.ImageCount)
+        {
+            navPause.text("Loading");
+            RecurseLoadThumbnails();
+        }
+    }
+    else if (!loadThumbnails)
+    {
+        navPause.text("Paused");
+    }
+}
+
 function RecurseLoadThumbnails()
 {
     if(loadThumbnails)
@@ -32,31 +49,6 @@ function RecurseLoadThumbnails()
         LoadThumbnailsBatch().then(function() {
             RecurseLoadThumbnails();
         });
-    }
-
-    if(lastLoadedThumbnail = 0)
-    {
-        SetStatus('Loading completed', 5);
-        navPause.css("display", "none");
-    }
-}
-
-function ToggleThumbnailsLoading()
-{
-    loadThumbnails = !loadThumbnails;
-
-    if(loadThumbnails)
-    {
-        navPause.text("Loading");
-    }
-    else if (!loadThumbnails)
-    {
-        navPause.text("Paused");
-    }
-
-    if(loadThumbnails && lastLoadedThumbnail > -1)
-    {
-        RecurseLoadThumbnails();
     }
 }
 
@@ -80,12 +72,18 @@ function LoadThumbnailsBatch()
             }
         });
 
-        Promise.all(ManyDaysGallery.Promises).then(function()
+        if(ManyDaysGallery.Promises.length > 0)
         {
-            ManyDaysGallery.Promises = [];
-            lastLoadedThumbnail = lastLoadedThumbnail - galleryPromiseBatchSize;
+            Promise.all(ManyDaysGallery.Promises).then(function()
+            {
+                ManyDaysGallery.Promises = [];
+                resolve();
+            });
+        }
+        else
+        {
             resolve();
-        });
+        }
     });
 }
 
@@ -100,16 +98,27 @@ function InitialiseImage(image)
                 $('#img_'+image.Id).removeClass('imgHidden');
                 AddMapMarker(image);
                 CreateClickEvent(image);
-                ManyDaysGallery.Loaded.push(image.Id);
+                LoadedImage(image.Id);
                 resolve();
             })
             .on('error', function (err)
             {
                 console.log('Failed to get image, error: ' + err);
-                ManyDaysGallery.Loaded.push(image.Id);
+                LoadedImage(image.Id);
                 resolve(); //lol
             });
     });
+}
+
+function LoadedImage(imageId)
+{
+    ManyDaysGallery.Loaded.push(imageId);
+
+    if(ManyDaysGallery.Loaded.length == ImageCollection.ImageCount)
+    {
+        SetStatus("Finished loading all [" + ImageCollection.ImageCount + "] thumbnails!", 6);
+        navPause.css("display", "none");
+    }
 }
 
 function CreateClickEvent(image)
