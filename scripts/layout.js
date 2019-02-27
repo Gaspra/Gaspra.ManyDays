@@ -62,7 +62,7 @@ function InitialiseContainers()
     previewTitleContainer = $("#previewTitleContainer");
     previewTitleContainer.css("height", "8vh");
     previewTitleContainer.css("width", "80vw");
-    previewTitleContainer.css("top", "2vh");
+    previewTitleContainer.css("top", "1vh");
     previewTitleContainer.css("left", "10vw");
     previewTitleContainer.css("position", "absolute");
     previewTitle = $("#previewTitle");
