@@ -73,7 +73,7 @@ function InitialiseContainers()
     previewTitle.css("background-color", "rgba(255,255,255,0.9)")
     previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
-    previewTitle.css("line-height", "8vh");
+    previewTitle.css("line-height", "6vh");
     previewTitle.css("margin", "auto");
 
     navContainer = $("#nav");
