@@ -64,16 +64,17 @@ function InitialiseContainers()
     previewTitleContainer.css("width", "80vw");
     previewTitleContainer.css("top", "1vh");
     previewTitleContainer.css("left", "10vw");
+    previewTitleContainer.css("position", "absolute");
     previewTitle = $("#previewTitle");
     previewTitle.css("height", "100%");
     previewTitle.css("width", "fit-content");
     previewTitle.css("padding", "0 10px");
     previewTitle.css("border-radius", "3px");
-    previewTitle.css("background-color", "rgba(0,0,0,0.8)")
-    previewTitle.css("position", "absolute");
+    previewTitle.css("background-color", "rgba(255,255,255,0.8)")
+    previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
-    previewTitle.css("color", "rgb(255,255,255) !important")
     previewTitle.css("line-height", "8vh");
+    previewTitle.css("margin", "auto");
 
     navContainer = $("#nav");
     navContainer.css("height", "50px");
