@@ -154,7 +154,7 @@ function PreviewImage(image)
 
 function SetPreviewText(image)
 {
-    var previewHtml = "<b>[" + image.Id + "] " + image.Name + "</b></br>" + image.Location.Name + " (" + image.Location.Lat + ", " + image.Location.Lng + ")";
+    var previewHtml = "<b>[" + image.Id + "] " + image.Name + "</b></br><fontSmall>" + image.Location.Name + " (" + image.Location.Lat + ", " + image.Location.Lng + ")</fontSmall>";
     previewTitle.html(previewHtml);
 }
 
