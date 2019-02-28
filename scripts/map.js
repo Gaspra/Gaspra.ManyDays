@@ -57,6 +57,7 @@ function AddMapMarker(image)
     if(mapGroup == null)
     {
         mapGroup = image.Location;
+        mapGroup.Id = manydaysLocations.Groups.length;
         mapGroup.Images = [];
         mapGroup.Images.push(image.Id);
 
@@ -71,17 +72,24 @@ function AddMapMarker(image)
 
         mapMarker.setMap(manydaysMap);
 
-        google.maps.event.addListener(mapMarker, 'click', function(mapGroup) {
-            var idList = "";
-            mapGroup.Images.forEach(function(image)
-            {
-                idList+=image;
-                if(image != mapGroup.Images[mapGroup.Images.length - 1])
-                {
-                    idList += ",";
-                }
-            });
-            window.history.pushState('manydays+image_'+idList, 'image_'+idList, '?i='+idList);
+        google.maps.event.addListener(mapMarker, 'click', function() {
+            window.history.pushState('manydays+image_'+idList, 'image_'+idList, CreateMapGroupUri(mapGroup.Id));
         });
     }
+}
+
+function CreateMapGroupUri(id)
+{
+    var mapGroup = manydaysLocations.Groups[id];
+    var idList = "";
+    mapGroup.Images.forEach(function(image)
+    {
+        idList+=image;
+        if(image != mapGroup.Images[mapGroup.Images.length - 1])
+        {
+            idList += ",";
+        }
+    });
+
+    return '?i='+idList;
 }
