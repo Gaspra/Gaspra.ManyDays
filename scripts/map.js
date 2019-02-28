@@ -2,6 +2,7 @@ var googleKey = "AIzaSyBb_OlGJ8FlcWBvL8eTY_niLspLZK6jnfw";
 var googleScript;
 var loadGoogleApiPromise = [];
 var manydaysMap;
+var manydaysLocations = {};
 
 var mapPromise;
 var mapResolver;
@@ -22,10 +23,9 @@ function ResolveMapPromise()
     mapResolver();
 }
 
-function InitialiseMap()
+function InitialiseMap(image)
 {
-    var lastImage = ImageCollection.Json["Images"].length - 1;
-    var image = ImageCollection.Json["Images"][lastImage];
+    manydaysLocations.Groups = [];
 
     manydaysMap = new google.maps.Map(document.getElementById("map"), {
         center: { lat: image.Location.Lat, lng: image.Location.Lng },
@@ -42,16 +42,46 @@ function SetMapLocation(image)
 
 function AddMapMarker(image)
 {
-    var latLng = { lat: image.Location.Lat, lng: image.Location.Lng };
-    var mapMarker = new google.maps.Marker({
-        position: latLng,
-        draggable: false,
-        title: image.Location.Name
+    var mapGroup = null;
+    manydaysLocations.Groups.forEach(function(group) {
+        if(group.Lat == image.Location.Lat)
+        {
+            if(group.Lng == image.Location.Lng)
+            {
+                group.Images.push(image.Id);
+                mapGroup = group;
+            }
+        }
     });
 
-    google.maps.event.addListener(mapMarker, 'click', function() {
-        window.history.pushState('manydays+image_'+image.Id, 'image_'+image.Id, '?i='+image.Id);
-    });
+    if(mapGroup == null)
+    {
+        mapGroup = image.Location;
+        mapGroup.Images = [];
+        mapGroup.Images.push(image.Id);
+
+        manydaysLocations.Groups.push(mapGroup);
+
+        var latLng = { lat: mapGroup.Lat, lng: mapGroup.Lng };
+        var mapMarker = new google.maps.Marker({
+            position: latLng,
+            draggable: false,
+            title: mapGroup.Name
+        });
+
+        google.maps.event.addListener(mapMarker, 'click', function(mapGroup) {
+            var idList = "";
+            mapGroup.Images.forEach(function(image)
+            {
+                idList+=image;
+                if(image != mapGroup.Images[mapGroup.Images.length - 1])
+                {
+                    idList += ",";
+                }
+            });
+            window.history.pushState('manydays+image_'+idList, 'image_'+idList, '?i='+idList);
+        });
+    }
 
     mapMarker.setMap(manydaysMap);
 }

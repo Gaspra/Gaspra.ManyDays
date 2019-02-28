@@ -13,7 +13,7 @@ $(document).ready(function()
     {
         SetStatus('Initialising map and gallery', 0);
 
-        InitialiseMap();
+        InitialiseMap(ImageCollection.Json["Images"][ImageCollection.ImageCount - 1]);
 
         InitialiseGallery();
     }), function() {
@@ -30,7 +30,7 @@ $(window).resize(function()
 
 function SetStatus(status, clearTime)
 {
-    navStatus.html("<fontSmall>"+status+"</fontSmall>");
+    navStatus.html(status);
 
     if(clearTime != 0)
     {
