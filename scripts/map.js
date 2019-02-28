@@ -73,7 +73,7 @@ function AddMapMarker(image)
         mapMarker.setMap(manydaysMap);
 
         google.maps.event.addListener(mapMarker, 'click', function() {
-            window.history.pushState('manydays+image_'+idList, 'image_'+idList, CreateMapGroupUri(mapGroup.Id));
+            window.history.pushState('manydays+images', 'manydays+images', CreateMapGroupUri(mapGroup.Id));
         });
     }
 }
@@ -81,9 +81,7 @@ function AddMapMarker(image)
 function CreateMapGroupUri(id)
 {
     var mapGroup = manydaysLocations.Groups[id];
-    
     var idList = "";
-    
     mapGroup.Images.forEach(function(image)
     {
         idList+=image;
