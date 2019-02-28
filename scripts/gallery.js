@@ -10,18 +10,30 @@ function InitialiseGallery()
 {
     ManyDaysGallery.Promises = [];
     ManyDaysGallery.Loaded = [];
+    ManyDaysGallery.Rejected = [];
 
+    CreateDivContainers();
+    InitialiseImageLoading();
+}
+
+function CreateDivContainers()
+{
     for(var i = ImageCollection.ImageCount - 1; i > -1; i--)
     {
         $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].Id+'"></div>');
     }
 
+    ResizeThumbnails();
+}
+
+function InitialiseImageLoading()
+{
+    ToggleThumbnailsLoading();
+
     navPause.on('click', function()
     {
         ToggleThumbnailsLoading();
     });
-
-    ResizeThumbnails();
 }
 
 function ToggleThumbnailsLoading()
@@ -30,11 +42,8 @@ function ToggleThumbnailsLoading()
 
     if(loadThumbnails)
     {
-        if(ManyDaysGallery.Loaded.length != ImageCollection.ImageCount)
-        {
-            navPause.text("Loading");
-            RecurseLoadThumbnails();
-        }
+        navPause.text("Loading");
+        RecurseLoadThumbnails();
     }
     else if (!loadThumbnails)
     {
@@ -44,18 +53,18 @@ function ToggleThumbnailsLoading()
 
 function RecurseLoadThumbnails()
 {
-    if(loadThumbnails)
+    if(ManyDaysGallery.Loaded.length + ManyDaysGallery.Rejected.length != ImageCollection.ImageCount)
     {
         LoadThumbnailsBatch().then(function() {
-            if(ManyDaysGallery.Loaded.length != ImageCollection.ImageCount)
-            {
-                RecurseLoadThumbnails();
-            }
-            else
-            {
-                resolve();
-            }
+            RecurseLoadThumbnails();
         });
+    }
+    else
+    {
+        SetStatus("Finished loading [" + ManyDaysGallery.Loaded.length + "] thumbnails", 6);
+        console.log("Couldn't load: [" + ManyDaysGallery.Rejected.length + "] thumbnails");
+        navPause.css("display", "none");
+        loadThumbnails = false;
     }
 }
 
@@ -110,9 +119,9 @@ function InitialiseImage(image)
             })
             .on('error', function (err)
             {
-                console.log('Failed to get image, error: ' + err);
-                LoadedImage(image.Id);
-                resolve(); //lol
+                RejectImage(image.Id, err);
+                //error handled, resolve anyway
+                resolve();
             });
     });
 }
@@ -120,13 +129,12 @@ function InitialiseImage(image)
 function LoadedImage(imageId)
 {
     ManyDaysGallery.Loaded.push(imageId);
+}
 
-    if(ManyDaysGallery.Loaded.length == ImageCollection.ImageCount)
-    {
-        SetStatus("Finished loading all [" + ImageCollection.ImageCount + "] thumbnails!", 6);
-        navPause.css("display", "none");
-        loadThumbnails = false;
-    }
+function RejectImage(imageId, err)
+{
+    ManyDaysGallery.Rejected.push(imageId);
+    console.log("Image rejected: "+imageId+ " with error: "+err);
 }
 
 function CreateClickEvent(image)
@@ -139,10 +147,9 @@ function CreateClickEvent(image)
 
 function PreviewImage(image)
 {
-    SetStatus("Loading "+image.Name, 0)
+    SetStatus("Loading "+image.Name, 5)
     var loadPreviewPromise = LoadPreview(image);
     loadPreviewPromise.then(function() {
-        SetStatus("", 0);
         SetPreviewText(image);
         previewContainer.css("display", "block");
         previewImage.off();

@@ -18,6 +18,7 @@ $(document).ready(function()
         InitialiseGallery();
     }), function() {
         //something went boom
+        //recursively try again?.. todo
     };
 
 });
@@ -29,11 +30,11 @@ $(window).resize(function()
 
 function SetStatus(status, clearTime)
 {
-    navStatus.text(status);
+    navStatus.html("<fontSmall>"+status+"</fontSmall>");
 
     if(clearTime != 0)
     {
-        setTimeout(function(){ navStatus.text(""); }, clearTime * 1000);
+        setTimeout(function(){ navStatus.html(""); }, clearTime * 1000);
     }
 }
 

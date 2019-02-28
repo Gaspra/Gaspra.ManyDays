@@ -82,13 +82,17 @@ function InitialiseContainers()
     navContainer.css("background-color", "#ffffff");
     navContainer.css("position", "relative");
     navPause = $("#navPause");
-    navPause.css("height", "50px");
+    navPause.css("height", "40px");
     navPause.css("width", "fit-content");
-    navPause.css("line-height", "50px");
+    navPause.css("padding", "0 6px");
+    navPause.css("margin", "4px 0");
+    navPause.css("line-height", "40px");
     navPause.css("position", "relative");
-    navPause.css("background-color", "rgba(100,100,100,0.6)")
     navPause.css("margin", "0");
     navPause.css("float", "left");
+    navPause.css("border-radius", "3px");
+    navPause.css("border" "2px solid rgb(0,0,0)");
+    navPause.css("cursor", "pointer");
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
     navStatus.css("width", "fit-content");
@@ -96,6 +100,7 @@ function InitialiseContainers()
     navStatus.css("position", "relative");
     navStatus.css("margin", "0");
     navStatus.css("float", "left");
+    navStatus.css("color", "rgba(30,30,30,0.9) !important");
     resizeContainer = $("#resize");
     resizeContainer.css("height", "20px");
     resizeContainer.css("width", "100%");
