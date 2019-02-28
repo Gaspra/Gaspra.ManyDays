@@ -69,6 +69,8 @@ function AddMapMarker(image)
             title: mapGroup.Name
         });
 
+        mapMarker.setMap(manydaysMap);
+
         google.maps.event.addListener(mapMarker, 'click', function(mapGroup) {
             var idList = "";
             mapGroup.Images.forEach(function(image)
@@ -82,6 +84,4 @@ function AddMapMarker(image)
             window.history.pushState('manydays+image_'+idList, 'image_'+idList, '?i='+idList);
         });
     }
-
-    mapMarker.setMap(manydaysMap);
 }
