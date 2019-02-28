@@ -85,7 +85,7 @@ function InitialiseContainers()
     navPause.css("height", "40px");
     navPause.css("width", "fit-content");
     navPause.css("padding", "0 6px");
-    navPause.css("margin", "4px 0");
+    navPause.css("margin", "4px");
     navPause.css("line-height", "40px");
     navPause.css("position", "relative");
     navPause.css("float", "left");
