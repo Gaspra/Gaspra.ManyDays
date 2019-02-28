@@ -91,7 +91,7 @@ function InitialiseContainers()
     navPause.css("margin", "0");
     navPause.css("float", "left");
     navPause.css("border-radius", "3px");
-    navPause.css("border" "2px solid rgb(0,0,0)");
+    navPause.css("border", "2px solid rgb(0,0,0)");
     navPause.css("cursor", "pointer");
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
