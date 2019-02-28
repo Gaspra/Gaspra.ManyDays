@@ -45,7 +45,7 @@ function ToggleThumbnailsLoading()
         navPause.text("Loading");
         RecurseLoadThumbnails();
     }
-    else if (!loadThumbnails)
+    else
     {
         navPause.text("Paused");
     }
@@ -53,18 +53,21 @@ function ToggleThumbnailsLoading()
 
 function RecurseLoadThumbnails()
 {
-    if(ManyDaysGallery.Loaded.length + ManyDaysGallery.Rejected.length != ImageCollection.ImageCount)
+    if(loadThumbnails)
     {
-        LoadThumbnailsBatch().then(function() {
-            RecurseLoadThumbnails();
-        });
-    }
-    else
-    {
-        SetStatus("Finished loading [" + ManyDaysGallery.Loaded.length + "] thumbnails", 6);
-        console.log("Couldn't load: [" + ManyDaysGallery.Rejected.length + "] thumbnails");
-        navPause.css("display", "none");
-        loadThumbnails = false;
+        if(ManyDaysGallery.Loaded.length + ManyDaysGallery.Rejected.length != ImageCollection.ImageCount)
+        {
+            LoadThumbnailsBatch().then(function() {
+                RecurseLoadThumbnails();
+            });
+        }
+        else
+        {
+            SetStatus("Finished loading [" + ManyDaysGallery.Loaded.length + "] thumbnails", 6);
+            console.log("Couldn't load: [" + ManyDaysGallery.Rejected.length + "] thumbnails");
+            navPause.css("display", "none");
+            loadThumbnails = false;
+        }
     }
 }
 
@@ -74,7 +77,8 @@ function LoadThumbnailsBatch()
     {
         var loading = 0;
         ImageCollection.Json["Images"].slice().reverse().forEach(function(image) {
-            if(!ManyDaysGallery.Loaded.includes(image.Id))
+            if(!ManyDaysGallery.Loaded.includes(image.Id) &&
+                !ManyDaysGallery.Rejected.includes(image.Id))
             {
                 if(loading < galleryPromiseBatchSize)
                 {
