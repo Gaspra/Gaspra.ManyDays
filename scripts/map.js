@@ -81,7 +81,9 @@ function AddMapMarker(image)
 function CreateMapGroupUri(id)
 {
     var mapGroup = manydaysLocations.Groups[id];
+    
     var idList = "";
+    
     mapGroup.Images.forEach(function(image)
     {
         idList+=image;
