@@ -1,70 +1,223 @@
-var ManyDaysGallery = {};
-var ImageCollection = {};
+var googleBucket = "https://storage.googleapis.com/manydays-gallery/";
+var thumbnailBucket = googleBucket + "thumbnail/";
+var previewBucket = googleBucket + "preview/";
+var rawBucket = googleBucket + "raw/";
+var imagePrefix = ".png";
+var galleryPromiseBatchSize = 10;
+var loadThumbnails = false;
 
-$(document).ready(function()
+function InitialiseGallery()
 {
-    InitialiseContainers();
-    SetStatus('Loading metadata', 0);
+    ManyDaysGallery.Promises = [];
+    ManyDaysGallery.Loaded = [];
+    ManyDaysGallery.Rejected = [];
 
-    ConstructImageCollectionPromise();
-    ConstructMapPromise();
-    CheckUri();
+    CreateDivContainers();
+    InitialiseImageLoading();
+}
 
-    Promise.all([mapPromise, imageCollectionPromise]).then(function()
+function CreateDivContainers()
+{
+    for(var i = ImageCollection.ImageCount - 1; i > -1; i--)
     {
-        SetStatus('Initialising map and gallery', 0);
+        $('#gallery').append('<div class="imgThumbnail imgHidden" id="img_'+ImageCollection.Json["Images"][i].Id+'"></div>');
+    }
 
-        InitialiseMap(ImageCollection.Json["Images"][ImageCollection.ImageCount - 1]);
+    ResizeThumbnails();
+}
 
-        InitialiseGallery();
-    }), function() {
-        //something went boom
-        //recursively try again?.. todo
-    };
-
-});
-
-$(window).resize(function()
+function InitialiseImageLoading()
 {
-    ResizeContainers();
-});
-
-function CheckUri()
-{
-    ImageCollection.UriImages = [];
-    var uri = window.location.search;
-    if(uri != "" && uri.includes('?i='))
+    navPause.on('click', function()
     {
-        var query = uri.split('?i=')[uri.split('?i=').length - 1];
-        var imageIds = query.split(',');
-        ImageCollection.UriImages = imageIds;
+        ToggleThumbnailsLoading();
+    });
+
+    if(ImageCollection.UriImages.length > 0)
+    {
+        LoadSpecificThumbnails(ImageCollection.UriImages);
+    }
+    else
+    {
+        ToggleThumbnailsLoading();
     }
 }
 
-function SetStatus(status, clearTime)
+function ToggleThumbnailsLoading()
 {
-    navStatus.html(status);
+    loadThumbnails = !loadThumbnails;
 
-    if(clearTime != 0)
+    if(loadThumbnails)
     {
-        setTimeout(function(){ navStatus.html(""); }, clearTime * 1000);
+        navPause.text("Loading");
+        RecurseLoadThumbnails();
+    }
+    else
+    {
+        navPause.text("Paused");
     }
 }
 
-var imageCollectionPromise;
-function ConstructImageCollectionPromise()
+function RecurseLoadThumbnails()
 {
-    imageCollectionPromise = new Promise(function(resolve, reject)
+    if(loadThumbnails)
     {
-        $.get('../ManyDays.json')
-            .done(function(data)
+        if(ManyDaysGallery.Loaded.length + ManyDaysGallery.Rejected.length != ImageCollection.ImageCount)
+        {
+            LoadThumbnailsBatch().then(function() {
+                RecurseLoadThumbnails();
+            });
+        }
+        else
+        {
+            SetStatus("Finished loading [" + ManyDaysGallery.Loaded.length + "] thumbnails", 6);
+            console.log("Couldn't load: [" + ManyDaysGallery.Rejected.length + "] thumbnails");
+            navPause.css("display", "none");
+            loadThumbnails = false;
+        }
+    }
+}
+
+function LoadThumbnailsBatch()
+{
+    return new Promise(function(resolve, reject)
+    {
+        var loading = 0;
+        ImageCollection.Json["Images"].slice().reverse().forEach(function(image) {
+            if(!ManyDaysGallery.Loaded.includes(image.Id) &&
+                !ManyDaysGallery.Rejected.includes(image.Id))
             {
-                ImageCollection.Json = data;
-                ImageCollection.ImageCount = data["Images"].length;
+                if(loading < galleryPromiseBatchSize)
+                {
+                    ManyDaysGallery.Promises.push(InitialiseImage(image));
+                    loading++;
+                }
+                else if(loading >= galleryPromiseBatchSize)
+                {
+                    return;
+                }
+            }
+        });
+
+        if(ManyDaysGallery.Promises.length > 0)
+        {
+            Promise.all(ManyDaysGallery.Promises).then(function()
+            {
+                ManyDaysGallery.Promises = [];
+                resolve();
+            });
+        }
+        else
+        {
+            resolve();
+        }
+    });
+}
+
+function LoadSpecificThumbnails(imageIds) //cleanup
+{
+    return new Promise(function(resolve, reject)
+    {
+        imageIds.forEach(function(id)
+        {
+            if(!ManyDaysGallery.Loaded.includes(id) &&
+                !ManyDaysGallery.Rejected.includes(id))
+            {
+                ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][id]));
+            }
+        });
+
+        if(ManyDaysGallery.Promises.length > 0)
+        {
+            Promise.all(ManyDaysGallery.Promises).then(function()
+            {
+                ManyDaysGallery.Promises = [];
+                resolve();
+            });
+        }
+        else
+        {
+            resolve();
+        }
+    });
+}
+
+function InitialiseImage(image)
+{
+    return new Promise(function(resolve, reject)
+    {
+        $('<img/>').attr('src', thumbnailBucket + image.Filename + imagePrefix)
+            .on('load', function ()
+            {
+                $('#img_'+image.Id).css('background-image', 'url('+ thumbnailBucket + image.Filename + imagePrefix +')');
+                $('#img_'+image.Id).removeClass('imgHidden');
+                AddMapMarker(image);
+                CreateClickEvent(image);
+                LoadedImage(image.Id);
                 resolve();
             })
-            .fail(function() {
-                reject();
+            .on('error', function (err)
+            {
+                RejectImage(image.Id, err);
+                //error handled, resolve anyway
+                resolve();
             });
+    });
+}
+
+function LoadedImage(imageId)
+{
+    ManyDaysGallery.Loaded.push(imageId);
+}
+
+function RejectImage(imageId, err)
+{
+    ManyDaysGallery.Rejected.push(imageId);
+    console.log("Image rejected: "+imageId+ " with error: "+err);
+}
+
+function CreateClickEvent(image)
+{
+    $('#img_'+image.Id).on('click', function()
+    {
+        PreviewImage(image);
+        SetMapLocation(image);
+    });
+}
+
+function PreviewImage(image)
+{
+    SetStatus("Loading "+image.Name, 5)
+    var loadPreviewPromise = LoadPreview(image);
+    loadPreviewPromise.then(function() {
+        SetPreviewText(image);
+        previewContainer.css("display", "block");
+        previewImage.off();
+        previewImage.on('click',function() {
+            window.open(rawBucket + image.Filename + imagePrefix, '_blank');
+        });
+    });
+}
+
+function SetPreviewText(image)
+{
+    var previewHtml = "<div class=\"fontDefault\"><b>[" + image.Id + "] " + image.Name + "</b></div><div class=\"fontSmall\" style=\"line-height:3vh;\">" + image.Location.Name + " (" + image.Location.Lat + ", " + image.Location.Lng + ")</div>";
+    previewTitle.html(previewHtml);
+}
+
+function LoadPreview(image)
+{
+    return new Promise((resolve, reject) => {
+        $('<img/>').attr('src', previewBucket + image.Filename + imagePrefix)
+        .on('load', function ()
+        {
+            previewImage.css('background-image', 'url('+ previewBucket + image.Filename + imagePrefix +')');
+            resolve();
+        })
+        .on('error', function (err)
+        {
+            console.log('Failed to get image, error: ' + err);
+            resolve();
+        });
     });
 }
