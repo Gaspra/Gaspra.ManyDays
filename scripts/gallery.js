@@ -28,12 +28,19 @@ function CreateDivContainers()
 
 function InitialiseImageLoading()
 {
-    ToggleThumbnailsLoading();
-
     navPause.on('click', function()
     {
         ToggleThumbnailsLoading();
     });
+
+    if(ImageCollection.UriImages.length > 0)
+    {
+
+    }
+    else
+    {
+        ToggleThumbnailsLoading();
+    }
 }
 
 function ToggleThumbnailsLoading()
@@ -91,6 +98,34 @@ function LoadThumbnailsBatch()
                 }
             }
         });
+
+        if(ManyDaysGallery.Promises.length > 0)
+        {
+            Promise.all(ManyDaysGallery.Promises).then(function()
+            {
+                ManyDaysGallery.Promises = [];
+                resolve();
+            });
+        }
+        else
+        {
+            resolve();
+        }
+    });
+}
+
+function LoadSpecificThumbnails(imageIds) //cleanup
+{
+    return new Promise(function(resolve, reject)
+    {
+        imageIds.forEach(function(id))
+        {
+            if(!ManyDaysGallery.Loaded.includes(id) &&
+                !ManyDaysGallery.Rejected.includes(id))
+            {
+                ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][id]));
+            }
+        }
 
         if(ManyDaysGallery.Promises.length > 0)
         {

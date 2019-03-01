@@ -8,6 +8,7 @@ $(document).ready(function()
 
     ConstructImageCollectionPromise();
     ConstructMapPromise();
+    CheckUri();
 
     Promise.all([mapPromise, imageCollectionPromise]).then(function()
     {
@@ -27,6 +28,18 @@ $(window).resize(function()
 {
     ResizeContainers();
 });
+
+function CheckUri()
+{
+    ImageCollection.UriImages = [];
+    var uri = window.location.pathname;
+    if(uri != "" && uri.contain('?'))
+    {
+        var query = uri.split('?')[uri.split('?').length - 1];
+        var imageIds = query.split(',');
+        ImageCollection.UriImages = imageIds;
+    }
+}
 
 function SetStatus(status, clearTime)
 {
