@@ -181,6 +181,7 @@ function CreateClickEvent(image)
     $('#img_'+image.Id).on('click', function()
     {
         PreviewImage(image);
+        SetMapLocation(image);
     });
 }
 
