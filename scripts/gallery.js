@@ -133,6 +133,7 @@ function LoadSpecificThumbnails(imageIds) //cleanup
                 if(imageToLoad != null)
                 {
                     ManyDaysGallery.Promises.push(InitialiseImage(imageToLoad));
+                    SetMapLocation(imageToLoad);
                 }
             }
         });
