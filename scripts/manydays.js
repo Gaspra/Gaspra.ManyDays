@@ -32,10 +32,10 @@ $(window).resize(function()
 function CheckUri()
 {
     ImageCollection.UriImages = [];
-    var uri = window.location.pathname;
-    if(uri != "" && uri.includes('?'))
+    var uri = window.location.search;
+    if(uri != "" && uri.includes('?i='))
     {
-        var query = uri.split('?')[uri.split('?').length - 1];
+        var query = uri.split('?i=')[uri.split('?i=').length - 1];
         var imageIds = query.split(',');
         ImageCollection.UriImages = imageIds;
     }

@@ -35,7 +35,7 @@ function InitialiseImageLoading()
 
     if(ImageCollection.UriImages.length > 0)
     {
-
+        LoadSpecificThumbnails(ImageCollection.UriImages);
     }
     else
     {
