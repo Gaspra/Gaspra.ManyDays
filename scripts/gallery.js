@@ -118,14 +118,14 @@ function LoadSpecificThumbnails(imageIds) //cleanup
 {
     return new Promise(function(resolve, reject)
     {
-        imageIds.forEach(function(id))
+        imageIds.forEach(function(id)
         {
             if(!ManyDaysGallery.Loaded.includes(id) &&
                 !ManyDaysGallery.Rejected.includes(id))
             {
                 ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][id]));
             }
-        }
+        });
 
         if(ManyDaysGallery.Promises.length > 0)
         {
