@@ -125,7 +125,10 @@ function LoadSpecificThumbnails(imageIds) //cleanup
             {
                 var imageToLoad = null;
                 ImageCollection.Json["Images"].forEach(function(image) {
-                    imageToLoad = image;
+                    if(image.Id == id)
+                    {
+                        imageToLoad = image;
+                    }
                 });
                 if(imageToLoad != null)
                 {
