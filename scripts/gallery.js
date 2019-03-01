@@ -123,7 +123,14 @@ function LoadSpecificThumbnails(imageIds) //cleanup
             if(!ManyDaysGallery.Loaded.includes(id) &&
                 !ManyDaysGallery.Rejected.includes(id))
             {
-                ManyDaysGallery.Promises.push(InitialiseImage(ImageCollection.Json["Images"][id]));
+                var imageToLoad = null;
+                ImageCollection.Json["Images"].forEach(function(image) {
+                    imageToLoad = image;
+                });
+                if(imageToLoad != null)
+                {
+                    ManyDaysGallery.Promises.push(InitialiseImage(imageToLoad));
+                }
             }
         });
 
