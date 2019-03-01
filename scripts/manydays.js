@@ -33,7 +33,7 @@ function CheckUri()
 {
     ImageCollection.UriImages = [];
     var uri = window.location.pathname;
-    if(uri != "" && uri.contain('?'))
+    if(uri != "" && uri.includes('?'))
     {
         var query = uri.split('?')[uri.split('?').length - 1];
         var imageIds = query.split(',');
