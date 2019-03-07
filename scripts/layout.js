@@ -5,7 +5,6 @@ var previewContainer;
 var previewBackground;
 var previewTitleContainer;
 var previewTitle;
-var previewOpen;
 var previewClose;
 var resizeContainer;
 var navContainer;
@@ -75,6 +74,16 @@ function InitialiseContainers()
     previewTitle.css("text-align", "center");
     previewTitle.css("line-height", "5vh");
     previewTitle.css("margin", "auto");
+    previewClose.css("position", "asbolute");
+    previewClose.css("top", "0");
+    previewClose.css("right", "0");
+    previewClose.css("width", "50px");
+    previewClose.css("height", "50px");
+    previewClose.css("cursor", "pointer");
+    previewClose.css("background-color", "rgba(100,10,10,0.5)");
+    previewClose.on('click', function() {
+        previewContainer.css("display", "none");
+    });
 
     navContainer = $("#nav");
     navContainer.css("height", "50px");
@@ -88,18 +97,19 @@ function InitialiseContainers()
     navPause.css("margin", "4px");
     navPause.css("line-height", "40px");
     navPause.css("position", "relative");
-    navPause.css("float", "left");
+    navPause.css("float", "right");
     navPause.css("border-radius", "3px");
     navPause.css("border", "2px solid rgb(0,0,0)");
     navPause.css("cursor", "pointer");
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
-    navStatus.css("width", "fit-content");
+    navStatus.css("width", "100%");
     navStatus.css("line-height", "50px");
-    navStatus.css("position", "relative");
+    navStatus.css("position", "absolute");
     navStatus.css("margin", "0");
-    navStatus.css("float", "left");
+    navStatus.css("text-align", "center");
     navStatus.css("color", "rgba(30,30,30,0.9) !important");
+
     resizeContainer = $("#resize");
     resizeContainer.css("height", "20px");
     resizeContainer.css("width", "100%");

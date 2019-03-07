@@ -41,14 +41,11 @@ function CheckUri()
     }
 }
 
-function SetStatus(status, clearTime)
+function SetStatus(status)
 {
     navStatus.html(status);
 
-    if(clearTime != 0)
-    {
-        setTimeout(function(){ navStatus.html(""); }, clearTime * 1000);
-    }
+    setTimeout(function(){ navStatus.html(""); }, 4000);
 }
 
 var imageCollectionPromise;
