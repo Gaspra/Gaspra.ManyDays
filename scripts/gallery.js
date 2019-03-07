@@ -204,7 +204,7 @@ function CreateClickEvent(image)
 
 function PreviewImage(image)
 {
-    SetStatus("Loading "+image.Name)
+    SetStatus("Loading "+image.Name " from: "+ image.Location.Name +" with ID: ["+image.Id+"]")
     var loadPreviewPromise = LoadPreview(image);
     loadPreviewPromise.then(function() {
         SetPreviewText(image);
