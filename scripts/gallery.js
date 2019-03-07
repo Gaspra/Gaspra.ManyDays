@@ -70,7 +70,7 @@ function RecurseLoadThumbnails()
         }
         else
         {
-            SetStatus("Finished loading [" + ManyDaysGallery.Loaded.length + "] thumbnails", 6);
+            SetStatus("Finished loading [" + ManyDaysGallery.Loaded.length + "] thumbnails");
             console.log("Couldn't load: [" + ManyDaysGallery.Rejected.length + "] thumbnails");
             navPause.css("display", "none");
             loadThumbnails = false;
@@ -198,7 +198,7 @@ function CreateClickEvent(image)
 
 function PreviewImage(image)
 {
-    SetStatus("Loading "+image.Name, 5)
+    SetStatus("Loading "+image.Name)
     var loadPreviewPromise = LoadPreview(image);
     loadPreviewPromise.then(function() {
         SetPreviewText(image);

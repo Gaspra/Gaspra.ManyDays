@@ -74,6 +74,7 @@ function InitialiseContainers()
     previewTitle.css("text-align", "center");
     previewTitle.css("line-height", "5vh");
     previewTitle.css("margin", "auto");
+    previewClose = $("#previewClose");
     previewClose.css("position", "asbolute");
     previewClose.css("top", "0");
     previewClose.css("right", "0");

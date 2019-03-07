@@ -4,7 +4,7 @@ var ImageCollection = {};
 $(document).ready(function()
 {
     InitialiseContainers();
-    SetStatus('Loading metadata', 0);
+    SetStatus('Loading metadata');
 
     ConstructImageCollectionPromise();
     ConstructMapPromise();
@@ -12,7 +12,7 @@ $(document).ready(function()
 
     Promise.all([mapPromise, imageCollectionPromise]).then(function()
     {
-        SetStatus('Initialising map and gallery', 0);
+        SetStatus('Initialising map and gallery');
 
         InitialiseMap(ImageCollection.Json["Images"][ImageCollection.ImageCount - 1]);
 
