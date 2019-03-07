@@ -106,7 +106,6 @@ function LoadThumbnailsBatch()
             SetStatus("Loading images with IDs: " + statusIds.replace(" ", ", "));
             Promise.all(ManyDaysGallery.Promises).then(function()
             {
-                SetStatus("Loaded images with IDs: " + imageIds.replace(" ", ", "));
                 ManyDaysGallery.Promises = [];
                 resolve();
             });
