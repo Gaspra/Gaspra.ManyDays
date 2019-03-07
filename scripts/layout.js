@@ -102,6 +102,7 @@ function InitialiseContainers()
     navPause.css("border-radius", "3px");
     navPause.css("border", "2px solid rgb(0,0,0)");
     navPause.css("cursor", "pointer");
+    navPause.css("z-index", "2");
     navStatus = $("#navStatus");
     navStatus.css("height", "50px");
     navStatus.css("width", "100%");
@@ -110,6 +111,7 @@ function InitialiseContainers()
     navStatus.css("margin", "0");
     navStatus.css("text-align", "center");
     navStatus.css("color", "rgba(30,30,30,0.9) !important");
+    navStatus.css("z-index", "1");
 
     resizeContainer = $("#resize");
     resizeContainer.css("height", "20px");
