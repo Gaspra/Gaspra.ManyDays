@@ -39,6 +39,7 @@ function InitialiseContainers()
     settingsContainer.css("display", "none");
 
     previewContainer = $("#preview");
+    previewContainer.css("z-index", "10");
     previewContainer.css("height", "100%");
     previewContainer.css("width", "100%");
     previewContainer.css("top", "0");

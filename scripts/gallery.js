@@ -83,6 +83,7 @@ function LoadThumbnailsBatch()
     return new Promise(function(resolve, reject)
     {
         var loading = 0;
+        statusIds = "";
         ImageCollection.Json["Images"].slice().reverse().forEach(function(image) {
             if(!ManyDaysGallery.Loaded.includes(image.Id) &&
                 !ManyDaysGallery.Rejected.includes(image.Id))
@@ -90,6 +91,7 @@ function LoadThumbnailsBatch()
                 if(loading < galleryPromiseBatchSize)
                 {
                     ManyDaysGallery.Promises.push(InitialiseImage(image));
+                    statusIds += image.Id + " ";
                     loading++;
                 }
                 else if(loading >= galleryPromiseBatchSize)
@@ -101,8 +103,10 @@ function LoadThumbnailsBatch()
 
         if(ManyDaysGallery.Promises.length > 0)
         {
+            SetStatus("Loading images with IDs: " + statusIds.replace(" ", ", "));
             Promise.all(ManyDaysGallery.Promises).then(function()
             {
+                SetStatus("Loaded images with IDs: " + imageIds.replace(" ", ", "));
                 ManyDaysGallery.Promises = [];
                 resolve();
             });
@@ -118,6 +122,7 @@ function LoadSpecificThumbnails(imageIds) //cleanup
 {
     return new Promise(function(resolve, reject)
     {
+        statusIds = "";
         imageIds.forEach(function(id)
         {
             if(!ManyDaysGallery.Loaded.includes(id) &&
@@ -128,6 +133,7 @@ function LoadSpecificThumbnails(imageIds) //cleanup
                     if(image.Id == id)
                     {
                         imageToLoad = image;
+                        statusIds += image.Id + " ";
                     }
                 });
                 if(imageToLoad != null)
@@ -140,6 +146,7 @@ function LoadSpecificThumbnails(imageIds) //cleanup
 
         if(ManyDaysGallery.Promises.length > 0)
         {
+            SetStatus("Loading images with IDs: " + statusIds.replace(" ", ", "));
             Promise.all(ManyDaysGallery.Promises).then(function()
             {
                 ManyDaysGallery.Promises = [];

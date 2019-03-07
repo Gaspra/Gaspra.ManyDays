@@ -10,7 +10,7 @@
     <!--main layer-->
     <div id="nav">
         <div id="navPause" class="fontDefault">Click to load images!</div>
-        <div id="navStatus" class="fontSmall"></div>
+        <div id="navStatus" class="fontSmall transitionText"></div>
     </div>
     <div id="map"></div>
     <div id="resize"></div>
@@ -60,6 +60,12 @@
         font-family:Arial;
         font-size:0.7em;
         color:#000000;
+    }
+    .transitionText {
+        transition: all 0.5s ease-out;
+        -webkit-transition: all 0.5s ease-out;
+        -moz-transition: all 0.5s ease-out;
+        -o-transition: all 0.5s ease-out;
     }
 </style>
 
