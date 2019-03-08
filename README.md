@@ -1,7 +1,13 @@
-# ManyDays :godmode:
+# ManyDays 🌍 🌎 🌏
 
-using google bucket for images
+Photography travel blog _(done cheap)_
+
+Google | Maps Javascript API
+  https://developers.google.com/maps/documentation/javascript/tutorial
+ 
+Google | Cloud Storage Bucket
+  https://cloud.google.com/storage/
   https://storage.googleapis.com/manydays-gallery/
 
-using github pages for site
+Github | Repository, pages
   www.manydays.co.uk  
