@@ -76,13 +76,21 @@ function InitialiseContainers()
     previewTitle.css("line-height", "5vh");
     previewTitle.css("margin", "auto");
     previewClose = $("#previewClose");
-    previewClose.css("position", "asbolute");
-    previewClose.css("top", "0");
-    previewClose.css("right", "0");
+    previewClose.css("position", "absolute");
+    previewClose.css("top", "9px");
+    previewClose.css("right", "9px");
     previewClose.css("width", "50px");
     previewClose.css("height", "50px");
+    previewClose.css("border-radius", "30px");
+    previewClose.css("border")
+    previewClose.css("line-height", "42px");
+    previewClose.css("text-align", "center");
+    previewClose.css("font-size", "28px");
+    previewClose.css("font-family", "tahoma");
     previewClose.css("cursor", "pointer");
-    previewClose.css("background-color", "rgba(100,10,10,0.5)");
+    previewClose.css("background-color", "rgb(255,255,255)");
+    previewClose.css("color", "rgba(30,30,30,0.9)");
+    previewClose.css("border", "rgba(30,30,30,0.9) solid 3px");
     previewClose.on('click', function() {
         previewContainer.css("display", "none");
     });
