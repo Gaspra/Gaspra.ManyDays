@@ -58,13 +58,13 @@ function InitialiseContainers()
     previewImage.css("position", "absolute");
     previewImage.css("background-color", "rgba(10,10,10,0.4)");
     previewImage.css("width", "80vw");
-    previewImage.css("top", "10vh");
+    previewImage.css("top", "13vh");
     previewImage.css("left", "10vw");
     previewImage.css("border-bottom", "rgba(0,0,0,0) solid 10px");
     previewTitleContainer = $("#previewTitleContainer");
-    previewTitleContainer.css("height", "9vh");
+    previewTitleContainer.css("height", "10vh");
     previewTitleContainer.css("width", "80vw");
-    previewTitleContainer.css("top", "1vh");
+    previewTitleContainer.css("top", "3vh");
     previewTitleContainer.css("left", "10vw");
     previewTitleContainer.css("position", "absolute");
     previewTitleContainer.css("background-color", "rgba(10,10,10,0.4)");
@@ -77,7 +77,7 @@ function InitialiseContainers()
     previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
     previewTitle.css("line-height", "5vh");
-    previewTitle.css("margin", "auto");
+    previewTitle.css("margin", "1vh auto");
     previewClose = $("#previewClose");
     previewClose.css("position", "absolute");
     previewClose.css("top", "9px");
