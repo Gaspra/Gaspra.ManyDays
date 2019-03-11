@@ -3,6 +3,7 @@ var googleScript;
 var loadGoogleApiPromise = [];
 var manydaysMap;
 var manydaysLocations = {};
+var previewMap;
 
 var mapPromise;
 var mapResolver;
@@ -32,6 +33,22 @@ function InitialiseMap(image)
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.HYBRID
     });
+}
+
+function InitialisePreviewMap()
+{
+    previewMap = new google.maps.Map(document.getElementById("previewMap"),
+    {
+        center: { lat: 0, lng: 0 },
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    });
+}
+
+function SetPreviewLocation(image)
+{
+    var latLng = { lat: image.Location.Lat, lng: image.Location.Lng };
+    previewMap.panTo(latLng);
 }
 
 function SetMapLocation(image)

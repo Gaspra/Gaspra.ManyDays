@@ -15,6 +15,7 @@ $(document).ready(function()
         SetStatus('Initialising map and gallery');
 
         InitialiseMap(ImageCollection.Json["Images"][ImageCollection.ImageCount - 1]);
+        InitialisePreviewMap();
 
         InitialiseGallery();
     }), function() {

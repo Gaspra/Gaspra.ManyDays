@@ -199,6 +199,7 @@ function CreateClickEvent(image)
     {
         PreviewImage(image);
         SetMapLocation(image);
+        SetPreviewLocation(image);
     });
 }
 
