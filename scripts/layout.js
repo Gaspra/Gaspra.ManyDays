@@ -66,9 +66,9 @@ function InitialiseContainers()
     previewTitleBar.css("height", "10%");
     previewTitleBar.css("width", "100%");
     previewTitle = $("#previewTitle");
-    previewTitle.css("height", "86%");
+    previewTitle.css("height", "fit-content");
     previewTitle.css("width", "fit-content");
-    previewTitle.css("padding", "2%");
+    previewTitle.css("padding", "8px");
     previewTitle.css("background-color", "rgba(255,255,255,0.9)")
     previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
