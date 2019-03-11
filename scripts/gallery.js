@@ -197,6 +197,7 @@ function CreateClickEvent(image)
 {
     $('#img_'+image.Id).on('click', function()
     {
+        ForceImage();//todo
         PreviewImage(image);
         SetMapLocation(image);
         SetPreviewLocation(image);
@@ -249,6 +250,15 @@ function FlipImageMap()
         previewImage.css('display','none');
         previewMap.css('display','block');
     } else
+    {
+        previewImage.css('display','block');
+        previewMap.css('display','none');
+    }
+}
+
+function ForceImage()
+{
+    if(!previewImage.is(":visible"))
     {
         previewImage.css('display','block');
         previewMap.css('display','none');

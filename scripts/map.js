@@ -4,6 +4,7 @@ var loadGoogleApiPromise = [];
 var manydaysMap;
 var manydaysLocations = {};
 var locationMap;
+var previewMarker;
 
 var mapPromise;
 var mapResolver;
@@ -43,12 +44,22 @@ function InitialisePreviewMap()
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.HYBRID
     });
+
+    previewMarker = new google.maps.Marker({
+        position: { lat: 0, lng: 0 },
+        draggable: false,
+        title: ""
+    });
+
+    previewMarker.setMap(locationMap);
 }
 
 function SetPreviewLocation(image)
 {
     var latLng = { lat: image.Location.Lat, lng: image.Location.Lng };
     locationMap.panTo(latLng);
+    previewMarker.setPosition(latLng);
+    previewMarker.setTitle(image.Name);
 }
 
 function SetMapLocation(image)
