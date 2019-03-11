@@ -1,11 +1,13 @@
 var manydaysContainer;
 var aboutContainer;
 var settingsContainer;
-var previewContainer;
+var preview;
 var previewBackground;
-var previewTitleContainer;
+var previewContainer;
+var previewTitleBar;
 var previewTitle;
 var previewClose;
+
 var resizeContainer;
 var navContainer;
 var navPause;
@@ -38,36 +40,45 @@ function InitialiseContainers()
     settingsContainer = $("#settings");
     settingsContainer.css("display", "none");
 
-    previewContainer = $("#preview");
-    previewContainer.css("z-index", "10");
-    previewContainer.css("height", "100%");
-    previewContainer.css("width", "100%");
-    previewContainer.css("top", "0");
-    previewContainer.css("left", "0");
-    previewContainer.css("position", "absolute");
-    previewContainer.css("display", "none");
+
+    preview = $("#preview");
+    preview.css("z-index", "10");
+    preview.css("height", "100vh");
+    preview.css("width", "100vw");
+    preview.css("top", "0");
+    preview.css("left", "0");
+    preview.css("position", "absolute");
+    preview.css("display", "none");
     previewBackground = $("#previewBackground");
-    previewBackground.css("height", "100%");
-    previewBackground.css("width", "100%");
+    previewBackground.css("height", "100vh");
+    previewBackground.css("width", "100vw");
     previewBackground.css("background-color", "rgba(0,0,0,0.6)");
     previewBackground.on('click', function() {
-        previewContainer.css("display", "none");
+        preview.css("display", "none");
     });
+    previewContainer = $("#previewContainer");
+    previewContainer.css("height", "100vh");
+    previewContainer.css("width", "90vw");
+    previewContainer.css("position", "absolute");
+    previewContainer.css("left", "5vw");
+    previewContainer.css("background-color", "rgba(0,0,0,0.4)");
+    previewTitleBar = $("#previewTitleBar");
+    previewTitleBar.css("position", "absolute");
+    previewTitleBar.css("height", "8vh");
+    previewTitleBar.css("top", "2vh")
+    previewTitleBar.css("width", "82vw");
+    previewTitleBar.css("left", "9vw");
+
+
+
+    //deprecated
     previewImage = $("#previewImage");
-    previewImage.css("height", "80vh");
     previewImage.css("position", "absolute");
-    previewImage.css("background-color", "rgba(10,10,10,0.4)");
-    previewImage.css("width", "80vw");
-    previewImage.css("top", "13vh");
-    previewImage.css("left", "10vw");
-    previewImage.css("border-bottom", "rgba(0,0,0,0) solid 10px");
-    previewTitleContainer = $("#previewTitleContainer");
-    previewTitleContainer.css("height", "10vh");
-    previewTitleContainer.css("width", "80vw");
-    previewTitleContainer.css("top", "3vh");
-    previewTitleContainer.css("left", "10vw");
-    previewTitleContainer.css("position", "absolute");
-    previewTitleContainer.css("background-color", "rgba(10,10,10,0.4)");
+    previewImage.css("height", "80vh");
+    previewImage.css("top", "12vh");
+    previewImage.css("width", "82vw");
+    previewImage.css("left", "9vw");
+
     previewTitle = $("#previewTitle");
     previewTitle.css("height", "8vh");
     previewTitle.css("width", "fit-content");
@@ -95,7 +106,7 @@ function InitialiseContainers()
     previewClose.css("color", "rgba(30,30,30,0.9)");
     previewClose.css("border", "rgba(30,30,30,0.9) solid 3px");
     previewClose.on('click', function() {
-        previewContainer.css("display", "none");
+        preview.css("display", "none");
     });
 
     navContainer = $("#nav");

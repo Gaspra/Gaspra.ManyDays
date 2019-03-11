@@ -208,7 +208,7 @@ function PreviewImage(image)
     var loadPreviewPromise = LoadPreview(image);
     loadPreviewPromise.then(function() {
         SetPreviewText(image);
-        previewContainer.css("display", "block");
+        preview.css("display", "block");
         previewTitleContainer.off();
         previewTitleContainer.on('click',function() {
             window.open(rawBucket + image.Filename + imagePrefix, '_blank');
