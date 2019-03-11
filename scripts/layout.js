@@ -68,6 +68,9 @@ function InitialiseContainers()
     previewMap.css("width", "100%");
     previewMap.css("display", "none");
     previewMap.css("background-color", "rgba(200,0,100,0.4)");
+    locationMap = $("#locationMap");
+    locationMap.css("height", "100%");
+    locationMap.css("width", "100%");
     previewTitleBar = $("#previewTitleBar");
     previewTitleBar.css("position", "relative");
     previewTitleBar.css("height", "10%");
