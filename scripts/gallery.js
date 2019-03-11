@@ -218,7 +218,7 @@ function PreviewImage(image)
 
 function SetPreviewText(image)
 {
-    var previewHtml = "<div class=\"fontDefault\" style=\"height:20px; line-height:20px;\"><b>[" + image.Id + "] " + image.Name + "</b></div><div class=\"fontSmall\" style=\"height:14px; line-height:14px;\">" + image.Location.Name + " (" + image.Location.Lat + ", " + image.Location.Lng + ")</div>";
+    var previewHtml = "<div class=\"fontDefault\" style=\"height:24px; line-height:24px;\"><b>[" + image.Id + "] " + image.Name + "</b></div><div class=\"fontSmall\" style=\"height:14px; line-height:14px;\">" + image.Location.Name + " (" + image.Location.Lat + ", " + image.Location.Lng + ")</div>";
     previewTitle.html(previewHtml);
 }
 

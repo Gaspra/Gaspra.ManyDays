@@ -72,7 +72,7 @@ function InitialiseContainers()
     previewTitle.css("background-color", "rgba(255,255,255,0.9)")
     previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
-    previewTitle.css("margin", "1vh auto");
+    previewTitle.css("margin", "0 auto");
     previewTitle.css("border-bottom-left-radius", "5px");
     previewTitle.css("border-bottom-right-radius", "5px");
     previewClose = $("#previewClose");
