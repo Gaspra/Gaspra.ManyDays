@@ -64,17 +64,14 @@ function InitialiseContainers()
     previewContainer.css("left", "5vw");
     previewContainer.css("background-color", "rgba(0,0,0,0.4)");
     previewImage = $("#previewImage");
-    previewImage.css("position", "absolute");
-    previewImage.css("height", "80vh");
-    previewImage.css("top", "12vh");
-    previewImage.css("width", "82vw");
-    previewImage.css("left", "9vw");
+    previewImage.css("position", "relative");
+    previewImage.css("height", "80%");
+    previewImage.css("width", "100%");
     previewTitleBar = $("#previewTitleBar");
-    previewTitleBar.css("position", "absolute");
-    previewTitleBar.css("height", "8vh");
-    previewTitleBar.css("top", "2vh")
-    previewTitleBar.css("width", "82vw");
-    previewTitleBar.css("left", "9vw");
+    previewTitleBar.css("position", "relative");
+    previewTitleBar.css("height", "10%");
+    previewTitleBar.css("width", "100%");
+    previewTitleBar.css("margin", "5% 0");
 
 
 
