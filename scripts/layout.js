@@ -57,11 +57,18 @@ function InitialiseContainers()
         preview.css("display", "none");
     });
     previewContainer = $("#previewContainer");
-    previewContainer.css("height", "100vh");
-    previewContainer.css("width", "90vw");
     previewContainer.css("position", "absolute");
+    previewContainer.css("height", "100vh");
+    previewContainer.css("top", "0");
+    previewContainer.css("width", "90vw");
     previewContainer.css("left", "5vw");
     previewContainer.css("background-color", "rgba(0,0,0,0.4)");
+    previewImage = $("#previewImage");
+    previewImage.css("position", "absolute");
+    previewImage.css("height", "80vh");
+    previewImage.css("top", "12vh");
+    previewImage.css("width", "82vw");
+    previewImage.css("left", "9vw");
     previewTitleBar = $("#previewTitleBar");
     previewTitleBar.css("position", "absolute");
     previewTitleBar.css("height", "8vh");
@@ -70,14 +77,6 @@ function InitialiseContainers()
     previewTitleBar.css("left", "9vw");
 
 
-
-    //deprecated
-    previewImage = $("#previewImage");
-    previewImage.css("position", "absolute");
-    previewImage.css("height", "80vh");
-    previewImage.css("top", "12vh");
-    previewImage.css("width", "82vw");
-    previewImage.css("left", "9vw");
 
     previewTitle = $("#previewTitle");
     previewTitle.css("height", "8vh");
@@ -89,6 +88,7 @@ function InitialiseContainers()
     previewTitle.css("text-align", "center");
     previewTitle.css("line-height", "5vh");
     previewTitle.css("margin", "1vh auto");
+
     previewClose = $("#previewClose");
     previewClose.css("position", "absolute");
     previewClose.css("top", "9px");
