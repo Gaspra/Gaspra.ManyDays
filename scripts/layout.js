@@ -1,13 +1,11 @@
 var manydaysContainer;
 var aboutContainer;
-var settingsContainer;
 var preview;
 var previewBackground;
 var previewContainer;
 var previewTitleBar;
 var previewTitle;
 var previewClose;
-
 var resizeContainer;
 var navContainer;
 var navPause;
@@ -36,10 +34,6 @@ function InitialiseContainers()
     aboutContainer.css("width", "100%");
     aboutContainer.css("background-color", "#ffffff");
     aboutContainer.css("position", "absolute");
-
-    settingsContainer = $("#settings");
-    settingsContainer.css("display", "none");
-
 
     preview = $("#preview");
     preview.css("z-index", "10");
@@ -79,8 +73,8 @@ function InitialiseContainers()
     previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
     previewTitle.css("margin", "1vh auto");
-    previewTitle.css("border-bottom-left-radius" "5px");
-    previewTitle.css("border-bottom-right-radius" "5px");
+    previewTitle.css("border-bottom-left-radius", "5px");
+    previewTitle.css("border-bottom-right-radius", "5px");
     previewClose = $("#previewClose");
     previewClose.css("position", "absolute");
     previewClose.css("top", "9px");
