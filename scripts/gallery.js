@@ -238,3 +238,18 @@ function LoadPreview(image)
         });
     });
 }
+
+
+//test
+function FlipImageMap()
+{
+    if(previewImage.is(":visible"))
+    {
+        previewImage.css('display','none');
+        previewMap.css('display','block');
+    } else
+    {
+        previewImage.css('display','block');
+        previewMap.css('display','none');
+    }
+}

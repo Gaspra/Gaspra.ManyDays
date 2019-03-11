@@ -6,6 +6,8 @@ var previewContainer;
 var previewTitleBar;
 var previewTitle;
 var previewClose;
+var previewImage;
+var previewMap;
 var resizeContainer;
 var navContainer;
 var navPause;
@@ -61,10 +63,18 @@ function InitialiseContainers()
     previewImage.css("position", "relative");
     previewImage.css("height", "80%");
     previewImage.css("width", "100%");
+    previewMap = $("#previewMap");
+    previewMap.css("height", "80%");
+    previewMap.css("width", "100%");
+    previewMap.css("display", "none");
+    previewMap.css("background-color", "rgba(200,0,100,0.4)");
     previewTitleBar = $("#previewTitleBar");
     previewTitleBar.css("position", "relative");
     previewTitleBar.css("height", "10%");
     previewTitleBar.css("width", "100%");
+    previewTitleBar.on('click',function() {
+        FlipImageMap();
+    });
     previewTitle = $("#previewTitle");
     previewTitle.css("height", "fit-content");
     previewTitle.css("width", "fit-content");
