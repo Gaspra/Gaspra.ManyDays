@@ -71,21 +71,16 @@ function InitialiseContainers()
     previewTitleBar.css("position", "relative");
     previewTitleBar.css("height", "10%");
     previewTitleBar.css("width", "100%");
-    previewTitleBar.css("margin", "5% 0");
-
-
-
     previewTitle = $("#previewTitle");
-    previewTitle.css("height", "8vh");
+    previewTitle.css("height", "86%");
     previewTitle.css("width", "fit-content");
-    previewTitle.css("padding", "0 10px");
-    previewTitle.css("border-radius", "3px");
+    previewTitle.css("padding", "2%");
     previewTitle.css("background-color", "rgba(255,255,255,0.9)")
     previewTitle.css("position", "relative");
     previewTitle.css("text-align", "center");
-    previewTitle.css("line-height", "5vh");
     previewTitle.css("margin", "1vh auto");
-
+    previewTitle.css("border-bottom-left-radius" "5px");
+    previewTitle.css("border-bottom-right-radius" "5px");
     previewClose = $("#previewClose");
     previewClose.css("position", "absolute");
     previewClose.css("top", "9px");
